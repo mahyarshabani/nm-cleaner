@@ -3,12 +3,15 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 5000",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "electron": "ng build --base-href ./ && electron .",
-    "electron:serve-tsc": "tsc -p tsconfig.serve.json"
+    "start": "npm-run-all -p electron:serve ng:serve",
+    "ng:serve": "ng serve -c web -o --port 5000",
+    "build": "npm run electron:serve-tsc && ng build --base-href ./",
+    "build:dev": "npm run build -- -c dev",
+    "build:prod": "npm run build -- -c production",
+    "web:build": "npm run build -- -c web-production",
+    "electron": "electron",
+    "electron:serve-tsc": "tsc -p tsconfig.serve.json",
+    "electron:serve": "wait-on tcp:5000 & npm run electron:serve-tsc && electron . --serve"
   },
   "main": "app/main.js",
   "private": true,
@@ -31,12 +34,16 @@
     "@angular/compiler-cli": "^14.1.0",
     "@types/jasmine": "~4.0.0",
     "electron": "^22.0.0",
+    "electron-debug": "^3.2.0",
+    "electron-reloader": "^1.2.3",
     "jasmine-core": "~4.2.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-    "typescript": "~4.7.2"
+    "npm-run-all": "^4.1.5",
+    "typescript": "~4.7.2",
+    "wait-on": "^7.0.1"
   }
 }
