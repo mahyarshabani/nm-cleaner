@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'nm-cleaner';
+
+  openSelectFolderDialog() {
+    console.log({MAHYAR: window.electronAPI});
+    window.electronAPI.openSelectFolderDialog();
+    // window.electronAPI.openSelectFolderDialog();
+  }
 }

@@ -5,7 +5,8 @@
 /tmp
 /out-tsc
 /bazel-out
-main.js
+app/main.js
+#app/preload.js
 *.js.map
 
 # Node

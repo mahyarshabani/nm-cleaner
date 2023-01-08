@@ -1,4 +1,4 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, screen, ipcMain, dialog } from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
 
@@ -11,31 +11,42 @@ function createWindow(): BrowserWindow {
   const size = screen.getPrimaryDisplay().workAreaSize;
 
   // Create the browser window.
+  const preloadURL = path.join(__dirname, 'preload.js');
+  console.log('here is preload url',{preloadURL})
   win = new BrowserWindow({
     x: 0,
     y: 0,
     width: size.width,
     height: size.height,
     webPreferences: {
-      nodeIntegration: true,
-      allowRunningInsecureContent: (serve),
-      contextIsolation: false,  // false if you want to run e2e test with Spectron
+      // nodeIntegration: true,
+      // allowRunningInsecureContent: (serve),
+      // contextIsolation: false,  // false if you want to run e2e test with Spectron,
+      preload: preloadURL
     },
   });
+
+  ipcMain.on('dialog:selectFolder', (event) => {
+    console.log('on dialog:selectFolder')
+    dialog.showOpenDialog({ properties: ['openDirectory', 'multiSelections'] }).then(res => {
+      console.log({res})
+    });
+  })
 
   if (serve) {
     const debug = require('electron-debug');
     debug();
 
     require('electron-reloader')(module);
+    console.log('Running on localhost5000')
     win.loadURL('http://localhost:5000');
   } else {
     // Path when running electron executable
     let pathIndex = './index.html';
 
-    if (fs.existsSync(path.join(__dirname, '../dist/index.html'))) {
+    if (fs.existsSync(path.join(__dirname, '../dist/nm-cleaner/index.html'))) {
       // Path when running electron in local folder
-      pathIndex = '../dist/index.html';
+      pathIndex = '../dist/nm-cleaner/index.html';
     }
 
     const url = new URL(path.join('file:', __dirname, pathIndex));
@@ -58,7 +69,9 @@ try {
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
   // Added 400 ms to fix the black background issue while using transparent window. More detais at https://github.com/electron/electron/issues/15947
-  app.on('ready', () => setTimeout(createWindow, 400));
+  app.on('ready', () => {
+    createWindow();
+  });
 
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {
