@@ -1,5 +1,5 @@
 export interface IElectronAPI {
-  openSelectFolderDialog: () => void,
+  openSelectFolderDialog: () => Promise<string>,
 }
 
 declare global {

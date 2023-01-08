@@ -1,5 +1,5 @@
 import { contextBridge, ipcRenderer } from 'electron';
 
 contextBridge.exposeInMainWorld('electronAPI', {
-  openSelectFolderDialog: () => ipcRenderer.send('dialog:selectFolder')
+  openSelectFolderDialog: () => ipcRenderer.invoke('dialog:selectFolder')
 })

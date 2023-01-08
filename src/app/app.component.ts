@@ -7,10 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'nm-cleaner';
+  foldersPath: string;
 
-  openSelectFolderDialog() {
-    console.log({MAHYAR: window.electronAPI});
-    window.electronAPI.openSelectFolderDialog();
+  async openSelectFolderDialog() {
+    this.foldersPath = await window.electronAPI.openSelectFolderDialog()
     // window.electronAPI.openSelectFolderDialog();
   }
 }

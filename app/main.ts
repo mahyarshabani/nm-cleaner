@@ -19,19 +19,12 @@ function createWindow(): BrowserWindow {
     width: size.width,
     height: size.height,
     webPreferences: {
-      // nodeIntegration: true,
-      // allowRunningInsecureContent: (serve),
-      // contextIsolation: false,  // false if you want to run e2e test with Spectron,
       preload: preloadURL
     },
   });
 
-  ipcMain.on('dialog:selectFolder', (event) => {
-    console.log('on dialog:selectFolder')
-    dialog.showOpenDialog({properties: ['openDirectory', 'multiSelections']}).then(res => {
-      console.log({res})
-    });
-  })
+
+  ipcMain.handle('dialog:selectFolder', handleFolderOpen)
 
   if (serve) {
     const debug = require('electron-debug');
@@ -93,4 +86,14 @@ try {
 } catch (e) {
   // Catch Error
   // throw e;
+}
+
+
+async function handleFolderOpen() {
+  const {canceled, filePaths} = await dialog.showOpenDialog({properties: ['openDirectory']});
+  if (canceled) {
+    return
+  } else {
+    return filePaths[0]
+  }
 }
