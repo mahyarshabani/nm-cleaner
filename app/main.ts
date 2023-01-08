@@ -12,7 +12,7 @@ function createWindow(): BrowserWindow {
 
   // Create the browser window.
   const preloadURL = path.join(__dirname, 'preload.js');
-  console.log('here is preload url',{preloadURL})
+  console.log('here is preload url', {preloadURL})
   win = new BrowserWindow({
     x: 0,
     y: 0,
@@ -28,7 +28,7 @@ function createWindow(): BrowserWindow {
 
   ipcMain.on('dialog:selectFolder', (event) => {
     console.log('on dialog:selectFolder')
-    dialog.showOpenDialog({ properties: ['openDirectory', 'multiSelections'] }).then(res => {
+    dialog.showOpenDialog({properties: ['openDirectory', 'multiSelections']}).then(res => {
       console.log({res})
     });
   })
