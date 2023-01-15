@@ -19,6 +19,7 @@
   },
   "files": [
     "app/preload.ts",
+    "app/scan.ts",
     "app/main.ts"
   ],
   "exclude": [

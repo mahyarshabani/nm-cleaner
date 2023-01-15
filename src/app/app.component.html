@@ -1,5 +1,7 @@
 <button (click)="openSelectFolderDialog()">Open</button>
 
 <h5>Selected Folder</h5>
-<pre>{{foldersPath}}</pre>
+<pre>{{foldersPath | async}}</pre>
+
+<button (click)="scan()">Scan</button>
 
