@@ -28,6 +28,9 @@ async function handleScan(event: IpcMainInvokeEvent, targetFolder: string) {
     payload: targetFolder,
   };
   scanProcess.postMessage(startScanMessage, [port1]);
+  scanProcess.on('message', (scanProcess) => {
+    console.log({ scanProcess });
+  });
   port2.start();
 }
 
