@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { from, Observable } from 'rxjs';
 
 @Component({
@@ -7,7 +7,7 @@ import { from, Observable } from 'rxjs';
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'nm-cleaner';
   foldersPath: Observable<string>;
 
@@ -20,5 +20,11 @@ export class AppComponent {
     console.log('window.electronAPI');
     console.log(window.electronAPI);
     window.electronAPI.scan('C:\\Projects');
+  }
+
+  ngOnInit(): void {
+    window.electronAPI.returnScanResult((event: any, value: string[]) => {
+      console.log({ value });
+    });
   }
 }

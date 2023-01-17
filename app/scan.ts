@@ -9,12 +9,18 @@ process.parentPort.once('message', async (e) => {
   const data: IScanMessage<string> = e.data;
   if (data.type === ScanMessageEnum.START_SCAN) {
     const scanner = new Scanner(data.payload);
-    scanner.itemFound$.subscribe((item) => {
-      const message: IScanMessage<string> = {
-        type: ScanMessageEnum.RETURN_RESULT,
-        payload: item,
-      };
-      process.parentPort.postMessage(message);
+    scanner.itemFound$.subscribe({
+      next: (item) => {
+        const message: IScanMessage<string> = {
+          type: ScanMessageEnum.RETURN_RESULT,
+          payload: item,
+        };
+        process.parentPort.postMessage(message);
+        process.stdout.write;
+      },
+      complete: () => {
+        process.exit();
+      },
     });
     scanner.startScan();
   }

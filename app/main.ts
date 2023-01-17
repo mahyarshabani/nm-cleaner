@@ -1,7 +1,7 @@
 import { app, BrowserWindow, ipcMain, screen } from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
-import Controller from './controller';
+import { Controller } from './controller';
 
 let win: BrowserWindow | null = null;
 const args = process.argv.slice(1),
@@ -21,7 +21,7 @@ function createWindow(): BrowserWindow {
     },
   });
 
-  Controller.init();
+  const controller = new Controller(win);
 
   if (serve) {
     const debug = require('electron-debug');
