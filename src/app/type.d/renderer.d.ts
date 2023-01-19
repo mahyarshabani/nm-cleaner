@@ -3,7 +3,12 @@ import * as Electron from 'electron';
 export interface IElectronAPI {
   openSelectFolderDialog: () => Promise<string>;
   scan: (targetFolder: string) => void;
-  returnScanResult: (callback: any) => Electron.IpcRenderer;
+  returnScanResult: (
+    callback: (event: any, value: string) => void
+  ) => Electron.IpcRenderer;
+  scanCompleted: (
+    callback: (event: any) => void
+  ) => Electron.IpcRenderer;
 }
 
 declare global {

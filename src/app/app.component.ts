@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { from, Observable } from 'rxjs';
+import { ElectronScanService } from './services/electron-scan.service';
+import { ElectronSelectService } from './services/electron-select.service';
 
 @Component({
   selector: 'app-root',
@@ -9,22 +10,21 @@ import { from, Observable } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   title = 'nm-cleaner';
-  foldersPath: Observable<string>;
+  constructor(
+    public electronScanService: ElectronScanService,
+    public electronSelectService: ElectronSelectService
+  ) {}
 
-  async openSelectFolderDialog() {
-    this.foldersPath = from(window.electronAPI.openSelectFolderDialog());
-    // window.electronAPI.openSelectFolderDialog();
+  openSelectFolderDialog() {
+    this.electronSelectService.openSelectFolder();
   }
 
   async scan() {
-    console.log('window.electronAPI');
-    console.log(window.electronAPI);
-    window.electronAPI.scan('C:\\Projects');
+    const selectedFolderExist = this.electronSelectService.selectedFolder;
+    if (selectedFolderExist) {
+      this.electronScanService.startScan(selectedFolderExist);
+    }
   }
 
-  ngOnInit(): void {
-    window.electronAPI.returnScanResult((event: any, value: string[]) => {
-      console.log({ value });
-    });
-  }
+  ngOnInit(): void {}
 }

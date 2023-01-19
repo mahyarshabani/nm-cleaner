@@ -5,5 +5,6 @@ const electronAPI: IElectronAPI = {
   openSelectFolderDialog: () => ipcRenderer.invoke('dialog:selectFolder'),
   scan: (targetFolder) => ipcRenderer.invoke('fs:scan', targetFolder),
   returnScanResult: (callback) => ipcRenderer.on('fs:scanResult', callback),
+  scanCompleted: (callback) => ipcRenderer.on('fs:scanCompleted', callback),
 };
 contextBridge.exposeInMainWorld('electronAPI', electronAPI);

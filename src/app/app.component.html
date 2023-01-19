@@ -1,7 +1,18 @@
 <button (click)="openSelectFolderDialog()">Open</button>
 
 <h5>Selected Folder</h5>
-<pre>{{foldersPath | async}}</pre>
+<pre>{{ electronSelectService.selectedFolder$ | async }}</pre>
 
 <button (click)="scan()">Scan</button>
 
+<h1 style="color: red" *ngIf="electronScanService.scanLoading$ | async">
+  Loading
+</h1>
+
+<pre>COUNT : {{ (electronScanService.scanResult$ | async)?.length }}</pre>
+
+<ul>
+  <li *ngFor="let result of electronScanService.scanResult$ | async">
+    {{ result }}
+  </li>
+</ul>

@@ -35,18 +35,14 @@ export class Controller {
       payload: targetFolder,
     };
     scanProcess.postMessage(startScanMessage, [port1]);
-    let result: string[] = [];
     scanProcess.on('message', (scanProcess) => {
       if (scanProcess.type === ScanMessageEnum.RETURN_RESULT) {
-        result.push(scanProcess.payload);
-        // console.log({ scanProcess });
+        this.window.webContents.send('fs:scanResult', scanProcess.payload);
       }
     });
-    scanProcess.on('exit', (exited) => {
-      console.log({ exited });
-      console.log({ ppp: this.window });
-      this.window.webContents.send('fs:scanResult', result);
-      result = [];
+    // TODO: Do clean up if required later
+    scanProcess.on('exit', (_) => {
+      this.window.webContents.send('fs:scanCompleted');
     });
     port2.start();
   }
