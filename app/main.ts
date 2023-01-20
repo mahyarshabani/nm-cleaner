@@ -22,6 +22,7 @@ function createWindow(): BrowserWindow {
   });
 
   const controller = new Controller(win);
+  controller.init();
 
   if (serve) {
     const debug = require('electron-debug');

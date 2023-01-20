@@ -19,8 +19,8 @@
   },
   "files": [
     "app/preload.ts",
-    "app/scan.ts",
-    "app/main.ts"
+    "app/main.ts",
+    "app/fs-utility.ts"
   ],
   "exclude": [
     "node_modules",

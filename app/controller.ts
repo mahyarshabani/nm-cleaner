@@ -6,17 +6,19 @@ import {
   MessageChannelMain,
   utilityProcess,
 } from 'electron';
-import { IScanMessage } from './scan-message';
-import { ScanMessageEnum } from './scan-message.enum';
+import { ScanMessageEnum } from './enum/scan-message.enum';
 import * as path from 'path';
+import { IScanMessage } from './interface/scan-message.interface';
 
 export class Controller {
-  constructor(private window: BrowserWindow) {
+  constructor(private window: BrowserWindow) {}
+
+  init() {
     ipcMain.handle('dialog:selectFolder', this.handleFolderOpen.bind(this));
     ipcMain.handle('fs:scan', this.handleScan.bind(this));
   }
 
-  async handleFolderOpen() {
+  private async handleFolderOpen() {
     const { canceled, filePaths } = await dialog.showOpenDialog({
       properties: ['openDirectory'],
     });
@@ -27,9 +29,9 @@ export class Controller {
     }
   }
 
-  async handleScan(event: IpcMainInvokeEvent, targetFolder: string) {
+  private async handleScan(event: IpcMainInvokeEvent, targetFolder: string) {
     const { port1, port2 } = new MessageChannelMain();
-    const scanProcess = utilityProcess.fork(path.join(__dirname, 'scan.js'));
+    const scanProcess = utilityProcess.fork(path.join(__dirname, 'fs-utility.js'));
     const startScanMessage: IScanMessage<string> = {
       type: ScanMessageEnum.START_SCAN,
       payload: targetFolder,

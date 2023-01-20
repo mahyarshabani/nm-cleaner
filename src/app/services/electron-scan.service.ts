@@ -8,6 +8,7 @@ export class ElectronScanService {
   private scanResultBS$ = new BehaviorSubject<string[]>([]);
   scanResult$ = this.scanResultBS$.asObservable();
 
+
   get scanResult(): string[] {
     return this.scanResultBS$.getValue();
   }
