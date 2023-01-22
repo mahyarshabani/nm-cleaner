@@ -6,9 +6,9 @@ export interface IElectronAPI {
   returnScanResult: (
     callback: (event: any, value: string) => void
   ) => Electron.IpcRenderer;
-  scanCompleted: (
-    callback: (event: any) => void
-  ) => Electron.IpcRenderer;
+  scanCompleted: (callback: (event: any) => void) => Electron.IpcRenderer;
+  delete: (targetFolder: string) => void;
+  deleteDone: (callback: (event: any) => void) => Electron.IpcRenderer;
 }
 
 declare global {

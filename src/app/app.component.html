@@ -12,7 +12,8 @@
 <pre>COUNT : {{ (electronScanService.sortedScanResult$ | async)?.length }}</pre>
 
 <ul>
-  <li *ngFor="let result of electronScanService.sortedScanResult$ | async">
-    {{ result }}
+  <li *ngFor="let folder of electronScanService.sortedScanResult$ | async">
+    {{ folder }}
+    <button (click)="delete(folder)">Delete</button>
   </li>
 </ul>

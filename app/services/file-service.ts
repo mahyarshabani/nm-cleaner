@@ -1,6 +1,6 @@
-import { Subject } from 'rxjs';
-import * as fs from 'fs';
+import { from, Subject } from 'rxjs';
 import * as path from 'path';
+import * as fs from 'fs-extra';
 
 export class FileService {
   private inProgressScan: number = 0;
@@ -11,6 +11,13 @@ export class FileService {
 
   startScan(target: string): void {
     this.searchNodeModules(target);
+  }
+
+  delete(data: string) {
+    fs.remove(data, (err) => {
+      if (err) return console.error(err);
+      console.log('success!');
+    });
   }
 
   private async searchNodeModules(target: string) {

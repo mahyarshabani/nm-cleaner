@@ -27,4 +27,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  delete(folder: string) {
+    window.electronAPI.delete(folder);
+  }
 }
