@@ -8,7 +8,7 @@ import { ElectronSelectService } from '../../services/electron-select.service';
   styleUrls: ['./scan.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ScanComponent implements OnInit {
+export class ScanComponent {
   page: string = 'select';
 
   constructor(
@@ -27,8 +27,6 @@ export class ScanComponent implements OnInit {
       this.electronScanService.startScan(selectedFolderExist);
     }
   }
-
-  ngOnInit(): void {}
 
   delete(folder: string) {
     window.electronAPI.delete(folder);
