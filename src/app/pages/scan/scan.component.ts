@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ElectronScanService } from '../../services/electron-scan.service';
 import { ElectronSelectService } from '../../services/electron-select.service';
 
