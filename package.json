@@ -13,7 +13,8 @@
     "electron:serve-tsc": "tsc -p tsconfig.serve.json",
     "electron:serve": "wait-on tcp:5000 & npm run electron:serve-tsc && electron . --serve",
     "lint": "ng lint",
-    "test": "ng test"
+    "test": "ng test",
+    "test:master": "ng test --browsers=ChromeHeadless --watch=false --code-coverage"
   },
   "main": "app/main.js",
   "private": true,
