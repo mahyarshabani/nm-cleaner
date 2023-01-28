@@ -4,10 +4,7 @@
   "compilerOptions": {
     "outDir": "./out-tsc/app",
     "types": [],
-    "strictPropertyInitialization": false,
-    "paths": {
-      "services": ["src/app/services/index"]
-    }
+    "strictPropertyInitialization": false
   },
   "files": [
     "src/main.ts",
