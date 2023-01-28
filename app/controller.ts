@@ -5,15 +5,14 @@ import {
   IpcMainInvokeEvent,
   utilityProcess,
 } from 'electron';
-import { ScanMessageEnum } from './enum/scan-message.enum';
+import { DeleteMessageEnum, ScanMessageEnum } from './enum';
 import * as path from 'path';
-import { IScanMessage } from './interface/scan-message.interface';
-import { IDeleteMessage } from './interface/delete-message.interface';
-import { DeleteMessageEnum } from './enum/delete-message.enum';
+import { IDeleteMessage, IScanMessage } from './interface';
 
 export class Controller {
   private fsUtility: Electron.UtilityProcess;
   private messageListener: (process: any) => void;
+
   constructor(private window: BrowserWindow) {}
 
   init() {
@@ -22,8 +21,6 @@ export class Controller {
     ipcMain.handle('dialog:selectFolder', this.handleFolderOpen.bind(this));
     ipcMain.handle('fs:scan', this.handleScan.bind(this));
     ipcMain.handle('fs:delete', this.handleDelete.bind(this));
-
-
 
     this.messageListener = (process: any) => {
       if (process.type === ScanMessageEnum.RETURN_RESULT) {

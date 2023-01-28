@@ -1,4 +1,4 @@
-import { DeleteMessageEnum } from '../enum/delete-message.enum';
+import { DeleteMessageEnum } from '../enum';
 import { IMessage } from './message-payload.interface';
 
 export interface IDeleteMessage<PAYLOAD>

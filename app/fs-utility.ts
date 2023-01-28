@@ -1,7 +1,6 @@
-import { ScanMessageEnum } from './enum/scan-message.enum';
-import { IScanMessage } from './interface/scan-message.interface';
+import { DeleteMessageEnum, ScanMessageEnum } from './enum';
+import { IScanMessage } from './interface';
 import { FileService } from './services/file-service';
-import { DeleteMessageEnum } from './enum/delete-message.enum';
 
 process.parentPort.on('message', async (e) => {
   const fileService = new FileService();
