@@ -5,8 +5,6 @@ import { ElectronScanService, ElectronSelectService } from '../../services';
 describe('ScanComponent', () => {
   let component: ScanComponent;
   let fixture: ComponentFixture<ScanComponent>;
-  let electronScanService: ElectronScanService;
-  let electronSelectService: ElectronSelectService;
 
   beforeEach(async(() => {
     const electronScanService = jasmine.createSpyObj('ElectronScanService', [

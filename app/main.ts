@@ -2,6 +2,8 @@ import { app, BrowserWindow, screen } from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
 import { Controller } from './controller';
+import * as electronDebug from 'electron-debug';
+import * as electronReloader from 'electron-reloader';
 
 let win: BrowserWindow | null = null;
 const args = process.argv.slice(1),
@@ -25,9 +27,9 @@ function createWindow(): BrowserWindow {
   controller.init();
 
   if (serve) {
-    const debug = require('electron-debug');
+    const debug = electronDebug;
     debug();
-    require('electron-reloader')(module);
+    electronReloader(module);
     console.log('Running on localhost5000');
     win.loadURL('http://localhost:5000');
   } else {
@@ -63,5 +65,5 @@ try {
     }
   });
 } catch (e) {
-  throw e;
+  console.error(e);
 }

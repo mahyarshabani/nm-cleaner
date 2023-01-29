@@ -26,7 +26,7 @@ export class ElectronScanService {
         this.scanResultBS$.next([...this.scanResult, value]);
       });
     });
-    window.electronAPI.scanCompleted((_) => {
+    window.electronAPI.scanCompleted(() => {
       this.ngZone.run(() => {
         this.scanLoadingBS$.next(false);
       });

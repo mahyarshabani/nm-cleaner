@@ -9,7 +9,7 @@ import { ElectronSelectService } from 'services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScanComponent {
-  page: string = 'select';
+  page = 'select';
 
   constructor(
     public electronScanService: ElectronScanService,

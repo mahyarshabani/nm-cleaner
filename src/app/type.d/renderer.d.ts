@@ -1,14 +1,15 @@
 import * as Electron from 'electron';
+import IpcRendererEvent = Electron.IpcRendererEvent;
 
 export interface IElectronAPI {
   openSelectFolderDialog: () => Promise<string>;
   scan: (targetFolder: string) => void;
   returnScanResult: (
-    callback: (event: any, value: string) => void
+    callback: (event: IpcRendererEvent, value: string) => void
   ) => Electron.IpcRenderer;
-  scanCompleted: (callback: (event: any) => void) => Electron.IpcRenderer;
+  scanCompleted: (callback: (event: IpcRendererEvent) => void) => Electron.IpcRenderer;
   delete: (targetFolder: string) => void;
-  deleteDone: (callback: (event: any) => void) => Electron.IpcRenderer;
+  deleteDone: (callback: (event: IpcRendererEvent) => void) => Electron.IpcRenderer;
 }
 
 declare global {

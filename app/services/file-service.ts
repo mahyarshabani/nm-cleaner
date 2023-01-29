@@ -3,11 +3,9 @@ import * as path from 'path';
 import * as fs from 'fs-extra';
 
 export class FileService {
-  private inProgressScan: number = 0;
+  private inProgressScan = 0;
   private scanResultS$ = new Subject<string>();
   scanResult$ = this.scanResultS$.asObservable();
-
-  constructor() {}
 
   startScan(target: string): void {
     this.searchNodeModules(target);

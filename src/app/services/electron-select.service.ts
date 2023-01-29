@@ -8,8 +8,6 @@ export class ElectronSelectService {
   private selectedFolderBS$ = new BehaviorSubject<string>('');
   public selectedFolder$ = this.selectedFolderBS$.asObservable();
 
-  constructor() {}
-
   get selectedFolder(): string {
     return this.selectedFolderBS$.getValue();
   }
