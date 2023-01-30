@@ -1,4 +1,4 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
 import { Controller } from './controller';
@@ -10,18 +10,19 @@ const args = process.argv.slice(1),
   serve = args.some((val) => val === '--serve');
 
 function createWindow(): BrowserWindow {
-  const size = screen.getPrimaryDisplay().workAreaSize;
+  // const size = screen.getPrimaryDisplay().workAreaSize;
 
   const preloadURL = path.join(__dirname, 'preload.js');
   win = new BrowserWindow({
-    x: 0,
-    y: 0,
-    width: size.width,
-    height: size.height,
+    width: 800,
+    height: 600,
+    center: true,
+    resizable: false,
     webPreferences: {
       preload: preloadURL,
     },
   });
+  win.setMenu(null);
 
   const controller = new Controller(win);
   controller.init();
