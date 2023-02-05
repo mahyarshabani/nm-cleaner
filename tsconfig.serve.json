@@ -16,10 +16,12 @@
       "es2015",
       "dom"
     ],
-    "rootDir": "./app/",
-    "outDir": "./dist/electron/"
   },
-  "include": ["app"],
+  "files": [
+    "app/preload.ts",
+    "app/main.ts",
+    "app/fs-utility.ts"
+  ],
   "exclude": [
     "node_modules",
     "**/*.spec.ts"

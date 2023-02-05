@@ -2,8 +2,6 @@ import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
 import { Controller } from './controller';
-import * as electronDebug from 'electron-debug';
-import * as electronReloader from 'electron-reloader';
 
 let win: BrowserWindow | null = null;
 const args = process.argv.slice(1),
@@ -28,15 +26,18 @@ function createWindow(): BrowserWindow {
   controller.init();
 
   if (serve) {
-    const debug = electronDebug;
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const debug = require('electron-debug');
     debug();
-    electronReloader(module);
+
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    require('electron-reloader')(module);
     console.log('Running on localhost5000');
     win.loadURL('http://localhost:5000');
   } else {
     let pathIndex = './index.html';
-    if (fs.existsSync(path.join(__dirname, '../dist/nm-cleaner/index.html'))) {
-      pathIndex = '../dist/nm-cleaner/index.html';
+    if (fs.existsSync(path.join(__dirname, '../dist/index.html'))) {
+      pathIndex = '../dist/index.html';
     }
     const url = new URL(path.join('file:', __dirname, pathIndex));
     win.loadURL(url.href);

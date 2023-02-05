@@ -1,8 +1,10 @@
 {
   "name": "nm-cleaner",
   "version": "0.0.0",
-  "main": "main.js",
+  "author": "Mahyar Shabani",
+  "description": "An application to clean your heavy node_modules",
   "private": true,
+  "main": "main.js",
   "dependencies": {
     "rxjs": "~7.5.0",
     "fs-extra": "^11.1.0"

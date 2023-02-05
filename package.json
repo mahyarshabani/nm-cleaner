@@ -15,11 +15,13 @@
     "electron": "electron",
     "electron:serve-tsc": "tsc -p tsconfig.serve.json",
     "electron:serve": "wait-on tcp:5000 & npm run electron:serve-tsc && electron dist/electron/main.js --serve",
+    "electron:build": "npm run build:prod && electron-builder build --publish=never --config electron-builder.json",
     "lint": "npx eslint .",
     "test:prod": "ng test --browsers=ChromeHeadless --watch=false --code-coverage",
     "test:dev": "ng test",
     "test": "npm run test:dev"
   },
+  "main": "app/main.js",
   "private": true,
   "dependencies": {
     "@angular/animations": "^14.1.0",
@@ -30,7 +32,6 @@
     "@angular/platform-browser": "^14.1.0",
     "@angular/platform-browser-dynamic": "^14.1.0",
     "@angular/router": "^14.1.0",
-    "fs-extra": "^11.1.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -50,6 +51,7 @@
     "@typescript-eslint/parser": "^5.43.0",
     "autoprefixer": "^10.4.13",
     "electron": "^22.0.0",
+    "electron-builder": "^23.6.0",
     "electron-debug": "^3.2.0",
     "electron-reloader": "^1.2.3",
     "eslint": "^8.33.0",
