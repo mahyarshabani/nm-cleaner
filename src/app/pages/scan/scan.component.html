@@ -20,11 +20,7 @@
       <p class="text-gray-600" id="selected-folder">{{ obs.selectedFolder }}</p>
     </div>
     <div class="my-4">
-      <button
-        [disabled]="!obs.selectedFolder"
-        class="bg-purple-500 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-full"
-        (click)="scan()"
-      >
+      <button [disabled]="!obs.selectedFolder" class="nm-btn" (click)="scan()">
         Scan
       </button>
     </div>
@@ -37,13 +33,7 @@
       class="flex justify-between items-center py-2 px-4 rounded-lg hover:bg-gray-200"
     >
       {{ folder }}
-      <button
-        (click)="delete(folder)"
-        class="ml-2 p-2 rounded-full bg-red-500 text-white"
-      >
-        Delete
-      </button>
-
+      <button (click)="delete(folder)" class="nm-btn">Delete</button>
     </li>
   </ul>
 </ng-template>

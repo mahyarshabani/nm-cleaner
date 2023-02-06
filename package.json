@@ -14,7 +14,7 @@
     "web:build": "npm run build -- -c web-production",
     "electron": "electron",
     "electron:serve-tsc": "tsc -p tsconfig.serve.json",
-    "electron:serve": "wait-on tcp:5000 & npm run electron:serve-tsc && electron dist/electron/main.js --serve",
+    "electron:serve": "wait-on tcp:5000 & npm run electron:serve-tsc && electron app/main.js --serve",
     "electron:build": "npm run build:prod && electron-builder build --publish=never --config electron-builder.json",
     "lint": "npx eslint .",
     "test:prod": "ng test --browsers=ChromeHeadless --watch=false --code-coverage",
