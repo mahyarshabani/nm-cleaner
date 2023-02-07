@@ -1,3 +1,38 @@
-.nm-btn {
+@import "variables";
+
+@mixin btn() {
   all: unset;
+  font-size: 1rem;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    transition: background-color 100ms ease-in;
+  }
+  transition: background-color 100ms ease-in;
+}
+
+@mixin normalSize() {
+  padding: 8px 12px;
+}
+
+@mixin compactBtn() {
+  padding: 4px 6px;
+}
+
+.btn-default {
+  @include btn();
+  @include normalSize();
+
+  &.compact {
+    @include compactBtn();
+  }
+
+  &:hover {
+    background-color: rgba($primary, 0.1);
+  }
+
+  border-color: $primary;
+  color: $primary;
 }

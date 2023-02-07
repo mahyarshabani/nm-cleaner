@@ -20,7 +20,11 @@
       <p class="text-gray-600" id="selected-folder">{{ obs.selectedFolder }}</p>
     </div>
     <div class="my-4">
-      <button [disabled]="!obs.selectedFolder" class="nm-btn" (click)="scan()">
+      <button
+        [disabled]="!obs.selectedFolder"
+        class="btn-default"
+        (click)="scan()"
+      >
         Scan
       </button>
     </div>
