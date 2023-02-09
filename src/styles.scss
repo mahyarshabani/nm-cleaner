@@ -3,6 +3,16 @@
 @import "assets/fonts/monserrat/monserrat";
 
 html {
+  height: 100vh;
+  overflow: hidden;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+}
+
+html {
   font-family: "Montserrat", serif;
 }
 
