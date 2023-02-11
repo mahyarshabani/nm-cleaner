@@ -5,7 +5,7 @@
   "description": "An application to clean your heavy node_modules",
   "scripts": {
     "ng": "ng",
-    "prestart": "npx eslint .",
+    "prestart": "npm run lint",
     "start": "npm-run-all -p electron:serve ng:serve",
     "ng:serve": "ng serve -c web --port 5000",
     "build": "npm run electron:serve-tsc && ng build --base-href ./",
@@ -16,7 +16,9 @@
     "electron:serve-tsc": "tsc -p tsconfig.serve.json",
     "electron:serve": "wait-on tcp:5000 & npm run electron:serve-tsc && electron app/main.js --serve",
     "electron:build": "npm run build:prod && electron-builder build --publish=never --config electron-builder.json",
-    "lint": "npx eslint .",
+    "lint:renderer": "npx eslint -c src/.eslintrc.js src/",
+    "lint:main": "npx eslint -c app/.eslintrc.js app/",
+    "lint": "npm run lint:main && npm run lint:renderer",
     "test:prod": "ng test --browsers=ChromeHeadless --watch=false --code-coverage",
     "test:dev": "ng test",
     "test": "npm run test:dev"
@@ -39,7 +41,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.1.2",
     "@angular-eslint/builder": "14.4.0",
-    "@angular-eslint/eslint-plugin": "14.4.0",
+    "@angular-eslint/eslint-plugin": "^14.4.0",
     "@angular-eslint/eslint-plugin-template": "14.4.0",
     "@angular-eslint/schematics": "14.4.0",
     "@angular-eslint/template-parser": "14.4.0",
