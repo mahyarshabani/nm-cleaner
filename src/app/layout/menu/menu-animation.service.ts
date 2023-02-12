@@ -50,14 +50,14 @@ export class MenuAnimationService {
         animate(
           `${DURATION}ms ${FIRST_STEP_DELAY}ms ease-in`,
           style({
-            top: `-${MENU_DATA.ITEM_HEIGHT}px`,
+            top: `-${MENU_DATA.HIDDEN_ITEM_TOP}px`,
           })
         ),
         animate(
           `${DURATION}ms ${SECOND_STEP_DELAY}ms ease-in`,
           style({
             top: '0px',
-            height: '100%',
+            height: `${MENU_DATA.SELECTED_ITEM_HEIGHT}px`,
           })
         ),
       ]),

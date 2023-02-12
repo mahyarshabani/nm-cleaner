@@ -6,10 +6,6 @@ $lightColor: #727272;
 ul.menu {
   all: unset;
 
-  > li:first-child {
-    height: 100%;
-  }
-
   > li {
     top: 0;
     position: absolute;
@@ -18,7 +14,7 @@ ul.menu {
     align-items: center;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    border: solid 3px $lightColor;
+    border: solid $lightColor;
     border-top: none;
     cursor: pointer;
     transition: border-color $transitionTime ease-in-out;
@@ -34,7 +30,12 @@ ul.menu {
     }
 
     &.active {
+      border-color: $primary;
       cursor: default;
+
+      .icon {
+        color: $primary;
+      }
     }
 
     .icon {

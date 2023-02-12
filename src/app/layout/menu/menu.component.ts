@@ -96,7 +96,8 @@ export class MenuComponent implements AfterViewInit {
         MENU_DATA.MARGIN_LEFT
       }px) + ((${i}) * ${MENU_DATA.ITEM_WIDTH}px))`;
       element.nativeElement.style.width = `${MENU_DATA.ITEM_WIDTH}px`;
-      element.nativeElement.style.height = `${MENU_DATA.ITEM_HEIGHT}px`;
+      element.nativeElement.style.borderWidth = `${MENU_DATA.ITEM_BORDER_WIDTH}px`;
+      element.nativeElement.style.height = i !== 0 ? `${MENU_DATA.ITEM_HEIGHT}px` : `${MENU_DATA.SELECTED_ITEM_HEIGHT}px`;
     });
   }
 }
