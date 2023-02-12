@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 import { IMenuItem } from '../../interface/menu-item.interface';
 import { PageEnum } from '../../enum/page.enum';
-import { AnimationBuilder } from '@angular/animations';
 import { ListUtil } from '../../utils/list-util';
 import { MenuAnimationService } from './menu-animation.service';
 import { MENU_DATA } from './menu-data';
@@ -31,7 +30,6 @@ export class MenuComponent implements AfterViewInit {
   orderedMenuItems: IMenuItem[] = this.menuItems;
 
   constructor(
-    private animationBuilder: AnimationBuilder,
     private menuAnimationService: MenuAnimationService
   ) {}
 
