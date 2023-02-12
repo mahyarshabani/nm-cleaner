@@ -7,6 +7,7 @@ export class MENU_DATA {
   static HIDDEN_ITEM_TOP = MENU_DATA.ITEM_HEIGHT + MENU_DATA.ITEM_BORDER_WIDTH;
   static MARGIN_LEFT = 10;
   static ITEM_WIDTH = 50;
+  static ANIMATION_TIMING_FUNCTION = 'ease-in-out';
   static ANIMATIONS_TRANSITIONS_DURATION = {
     [AnimationsEnum.PREVIOUS_ACTIVE_ITEM]: 200,
     [AnimationsEnum.ITEMS_REORDERING]: 200,

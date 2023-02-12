@@ -27,7 +27,7 @@ export class MenuAnimationService {
       this.playAnimation(
         element,
         animate(
-          `${DURATION}ms ${DELAY}ms ease-in`,
+          `${DURATION}ms ${DELAY}ms ${MENU_DATA.ANIMATION_TIMING_FUNCTION}`,
           style({
             left: `calc((${currentIndex + 1} * ${
               MENU_DATA.MARGIN_LEFT
@@ -48,13 +48,13 @@ export class MenuAnimationService {
     this.playAnimation(newActive, [
       sequence([
         animate(
-          `${DURATION}ms ${FIRST_STEP_DELAY}ms ease-in`,
+          `${DURATION}ms ${FIRST_STEP_DELAY}ms ${MENU_DATA.ANIMATION_TIMING_FUNCTION}`,
           style({
             top: `-${MENU_DATA.HIDDEN_ITEM_TOP}px`,
           })
         ),
         animate(
-          `${DURATION}ms ${SECOND_STEP_DELAY}ms ease-in`,
+          `${DURATION}ms ${SECOND_STEP_DELAY}ms ${MENU_DATA.ANIMATION_TIMING_FUNCTION}`,
           style({
             top: '0px',
             height: `${MENU_DATA.SELECTED_ITEM_HEIGHT}px`,
@@ -71,7 +71,7 @@ export class MenuAnimationService {
       MENU_DATA.ANIMATIONS_TRANSITIONS_DELAY;
     this.playAnimation(previousActive, [
       animate(
-        `${DURATION}ms ${DELAY}ms ease-in`,
+        `${DURATION}ms ${DELAY}ms ${MENU_DATA.ANIMATION_TIMING_FUNCTION}`,
         style({
           height: `${MENU_DATA.ITEM_HEIGHT}px`,
         })
