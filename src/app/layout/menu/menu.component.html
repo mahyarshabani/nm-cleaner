@@ -1,0 +1,12 @@
+<ul class="menu">
+  <li
+    #menuItemElement
+    *ngFor="let menuItem of menuItems; let i = index"
+    [ngClass]="{ active: orderedMenuItems[0].page === menuItem.page }"
+    [id]="menuItem.page"
+    class="not-draggable"
+    (click)="activatePage(menuItem)"
+  >
+    <span class="icon material-icons-outlined">{{ menuItem.icon }}</span>
+  </li>
+</ul>

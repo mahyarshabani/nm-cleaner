@@ -5,7 +5,6 @@
   "description": "An application to clean your heavy node_modules",
   "scripts": {
     "ng": "ng",
-    "prestart": "npm run lint",
     "start": "npm-run-all -p electron:serve ng:serve",
     "ng:serve": "ng serve -c web --port 5000",
     "build": "npm run electron:serve-tsc && ng build --base-href ./",
@@ -34,6 +33,7 @@
     "@angular/platform-browser": "^14.1.0",
     "@angular/platform-browser-dynamic": "^14.1.0",
     "@angular/router": "^14.1.0",
+    "material-icons": "^1.13.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

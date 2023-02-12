@@ -14,8 +14,10 @@ function createWindow(): BrowserWindow {
   win = new BrowserWindow({
     width: 800,
     height: 600,
+    frame:false,
     center: true,
     resizable: false,
+    autoHideMenuBar: true,
     webPreferences: {
       preload: preloadURL,
     },

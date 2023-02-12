@@ -1,43 +1,43 @@
-<ng-container *ngIf="page === 'select'; else resultTemplate">
-  <div
-    class="flex flex-col items-center"
-    *ngIf="{
-      selectedFolder: electronSelectService.selectedFolder$ | async
-    } as obs"
-  >
-    <div
-      *ngIf="!obs.selectedFolder"
-      (click)="openSelectFolderDialog()"
-      class="bg-gray-200 border-dashed border-2 border-gray-300 rounded-md py-4 px-4 text-center cursor-pointer"
-    >
-      <p class="text-gray-600">Click or drag and drop a folder here</p>
-    </div>
-    <div
-      *ngIf="!!obs.selectedFolder"
-      class="bg-gray-200 border-dashed border-2 border-gray-300 rounded-md py-4 px-4 text-center cursor-pointer"
-      id="drop-zone"
-    >
-      <p class="text-gray-600" id="selected-folder">{{ obs.selectedFolder }}</p>
-    </div>
-    <div class="my-4">
-      <button
-        [disabled]="!obs.selectedFolder"
-        class="btn-default"
-        (click)="scan()"
-      >
-        Scan
-      </button>
-    </div>
-  </div>
-</ng-container>
-<ng-template #resultTemplate>
-  <ul class="list-none">
-    <li
-      *ngFor="let folder of electronScanService.sortedScanResult$ | async"
-      class="flex justify-between items-center py-2 px-4 rounded-lg hover:bg-gray-200"
-    >
-      {{ folder }}
-      <button (click)="delete(folder)" class="nm-btn">Delete</button>
-    </li>
-  </ul>
-</ng-template>
+<!--<ng-container *ngIf="page === 'select'; else resultTemplate">-->
+<!--  <div-->
+<!--    class="flex flex-col items-center"-->
+<!--    *ngIf="{-->
+<!--      selectedFolder: electronSelectService.selectedFolder$ | async-->
+<!--    } as obs"-->
+<!--  >-->
+<!--    <div-->
+<!--      *ngIf="!obs.selectedFolder"-->
+<!--      (click)="openSelectFolderDialog()"-->
+<!--      class="bg-gray-200 border-dashed border-2 border-gray-300 rounded-md py-4 px-4 text-center cursor-pointer"-->
+<!--    >-->
+<!--      <p class="text-gray-600">Click or drag and drop a folder here</p>-->
+<!--    </div>-->
+<!--    <div-->
+<!--      *ngIf="!!obs.selectedFolder"-->
+<!--      class="bg-gray-200 border-dashed border-2 border-gray-300 rounded-md py-4 px-4 text-center cursor-pointer"-->
+<!--      id="drop-zone"-->
+<!--    >-->
+<!--      <p class="text-gray-600" id="selected-folder">{{ obs.selectedFolder }}</p>-->
+<!--    </div>-->
+<!--    <div class="my-4">-->
+<!--      <button-->
+<!--        [disabled]="!obs.selectedFolder"-->
+<!--        class="btn-default"-->
+<!--        (click)="scan()"-->
+<!--      >-->
+<!--        Scan-->
+<!--      </button>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</ng-container>-->
+<!--<ng-template #resultTemplate>-->
+<!--  <ul class="list-none">-->
+<!--    <li-->
+<!--      *ngFor="let folder of electronScanService.sortedScanResult$ | async"-->
+<!--      class="flex justify-between items-center py-2 px-4 rounded-lg hover:bg-gray-200"-->
+<!--    >-->
+<!--      {{ folder }}-->
+<!--      <button (click)="delete(folder)" class="nm-btn">Delete</button>-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--</ng-template>-->
