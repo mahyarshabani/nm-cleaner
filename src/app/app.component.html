@@ -1,2 +1,4 @@
 <app-title-bar></app-title-bar>
-<router-outlet></router-outlet>
+<main [ngStyle]="{ paddingTop: MENU_DATA.SELECTED_ITEM_HEIGHT }">
+  <router-outlet></router-outlet>
+</main>
