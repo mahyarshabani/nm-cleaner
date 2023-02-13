@@ -6,11 +6,11 @@ import {
   QueryList,
   ViewChildren,
 } from '@angular/core';
-import { IMenuItem } from '../../interface/menu-item.interface';
-import { PageEnum } from '../../enum/page.enum';
-import { ListUtil } from '../../utils/list-util';
-import { MenuAnimationService } from './menu-animation.service';
-import { MENU_DATA } from './menu-data';
+import { IMenuItem } from '@interface';
+import { PageEnum } from '@enum';
+import { ListUtil } from '@util';
+import { MenuAnimationService } from '@service';
+import { MENU_DATA } from '@constant';
 
 @Component({
   selector: 'app-menu',
@@ -29,9 +29,7 @@ export class MenuComponent implements AfterViewInit {
   ];
   orderedMenuItems: IMenuItem[] = this.menuItems;
 
-  constructor(
-    private menuAnimationService: MenuAnimationService
-  ) {}
+  constructor(private menuAnimationService: MenuAnimationService) {}
 
   ngAfterViewInit(): void {
     this.setInitialMenuItemsStyles();
@@ -95,7 +93,10 @@ export class MenuComponent implements AfterViewInit {
       }px) + ((${i}) * ${MENU_DATA.ITEM_WIDTH}px))`;
       element.nativeElement.style.width = `${MENU_DATA.ITEM_WIDTH}px`;
       element.nativeElement.style.borderWidth = `${MENU_DATA.ITEM_BORDER_WIDTH}px`;
-      element.nativeElement.style.height = i !== 0 ? `${MENU_DATA.ITEM_HEIGHT}px` : `${MENU_DATA.SELECTED_ITEM_HEIGHT}px`;
+      element.nativeElement.style.height =
+        i !== 0
+          ? `${MENU_DATA.ITEM_HEIGHT}px`
+          : `${MENU_DATA.SELECTED_ITEM_HEIGHT}px`;
     });
   }
 }

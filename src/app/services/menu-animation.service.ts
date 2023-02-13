@@ -6,8 +6,8 @@ import {
   sequence,
   style,
 } from '@angular/animations';
-import { IMenuItem } from '../../interface/menu-item.interface';
-import { MENU_DATA } from './menu-data';
+import { IMenuItem } from '@interface';
+import { MENU_DATA } from '@constant';
 
 @Injectable()
 export class MenuAnimationService {

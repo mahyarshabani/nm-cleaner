@@ -1,4 +1,4 @@
-export enum AnimationsEnum {
+export enum MenuAnimationsEnum {
   PREVIOUS_ACTIVE_ITEM = 'PREVIOUS_ACTIVE_ITEM',
   NEW_ACTIVE_ITEM = 'NEW_ACTIVE_ITEM',
   ITEMS_REORDERING = 'ITEMS_REORDERING',

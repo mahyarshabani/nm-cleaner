@@ -1,4 +1,4 @@
-import { PageEnum } from '../enum/page.enum';
+import { PageEnum } from '@enum';
 
 export interface IMenuItem {
   page: PageEnum;

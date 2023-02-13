@@ -24,7 +24,11 @@
       "dom"
     ],
     "paths": {
-      "services": ["src/app/services/index"]
+      "@service": ["src/app/services/index.ts"],
+      "@util": ["src/app/utils/index.ts"],
+      "@constant": ["src/app/constant/index.ts"],
+      "@enum": ["src/app/enum/index.ts"],
+      "@interface": ["src/app/interface/index.ts"]
     }
   },
   "angularCompilerOptions": {

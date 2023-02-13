@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ElectronScanService } from 'services';
-import { ElectronSelectService } from 'services';
+import { ElectronScanService } from '@service';
+import { ElectronSelectService } from '@service';
 
 @Component({
   selector: 'app-scan',

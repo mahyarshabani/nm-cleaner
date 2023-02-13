@@ -1,4 +1,4 @@
-import { AnimationsEnum } from './animations.enum';
+import { MenuAnimationsEnum } from '@enum';
 
 export class MENU_DATA {
   static ITEM_BORDER_WIDTH = 1;
@@ -9,22 +9,22 @@ export class MENU_DATA {
   static ITEM_WIDTH = 50;
   static ANIMATION_TIMING_FUNCTION = 'ease-in-out';
   static ANIMATIONS_TRANSITIONS_DURATION = {
-    [AnimationsEnum.PREVIOUS_ACTIVE_ITEM]: 200,
-    [AnimationsEnum.ITEMS_REORDERING]: 200,
-    [AnimationsEnum.NEW_ACTIVE_ITEM]: 200,
+    [MenuAnimationsEnum.PREVIOUS_ACTIVE_ITEM]: 200,
+    [MenuAnimationsEnum.ITEMS_REORDERING]: 200,
+    [MenuAnimationsEnum.NEW_ACTIVE_ITEM]: 200,
   };
   static ANIMATIONS_TRANSITIONS_DELAY = {
-    [AnimationsEnum.PREVIOUS_ACTIVE_ITEM]: 0,
-    [AnimationsEnum.ITEMS_REORDERING]:
+    [MenuAnimationsEnum.PREVIOUS_ACTIVE_ITEM]: 0,
+    [MenuAnimationsEnum.ITEMS_REORDERING]:
       MENU_DATA.ANIMATIONS_TRANSITIONS_DURATION[
-        AnimationsEnum.PREVIOUS_ACTIVE_ITEM
+        MenuAnimationsEnum.PREVIOUS_ACTIVE_ITEM
       ],
-    [AnimationsEnum.NEW_ACTIVE_ITEM]:
+    [MenuAnimationsEnum.NEW_ACTIVE_ITEM]:
       MENU_DATA.ANIMATIONS_TRANSITIONS_DURATION[
-        AnimationsEnum.PREVIOUS_ACTIVE_ITEM
+        MenuAnimationsEnum.PREVIOUS_ACTIVE_ITEM
       ] +
       MENU_DATA.ANIMATIONS_TRANSITIONS_DURATION[
-        AnimationsEnum.ITEMS_REORDERING
+        MenuAnimationsEnum.ITEMS_REORDERING
       ],
   };
 }
