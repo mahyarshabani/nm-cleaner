@@ -6,6 +6,8 @@ export class FileService {
   private inProgressScan = 0;
   private scanResultS$ = new Subject<string>();
   scanResult$ = this.scanResultS$.asObservable();
+  private deleteResultS$ = new Subject<string>();
+  deleteResult$ = this.deleteResultS$.asObservable();
 
   startScan(target: string): void {
     this.searchNodeModules(target);
@@ -14,7 +16,7 @@ export class FileService {
   delete(data: string) {
     fs.remove(data, (err) => {
       if (err) return console.error(err);
-      console.log('success!');
+      this.deleteResultS$.next(data);
     });
   }
 

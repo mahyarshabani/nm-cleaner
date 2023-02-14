@@ -5,11 +5,7 @@
       selectedFolder: electronSelectService.selectedFolder$ | async
     } as obs"
   >
-    <div
-      *ngIf="!obs.selectedFolder"
-      (click)="openSelectFolderDialog()"
-      class="bg-gray-200 border-dashed border-2 border-gray-300 rounded-md py-4 px-4 text-center cursor-pointer"
-    >
+    <div *ngIf="!obs.selectedFolder" (click)="openSelectFolderDialog()">
       <p class="text-gray-600">Click or drag and drop a folder here</p>
     </div>
     <div
@@ -32,12 +28,13 @@
 </ng-container>
 <ng-template #resultTemplate>
   <ul class="list-none">
-    <li
-      *ngFor="let folder of electronScanService.sortedScanResult$ | async"
-      class="flex justify-between items-center py-2 px-4 rounded-lg hover:bg-gray-200"
-    >
-      {{ folder }}
-      <button (click)="delete(folder)" class="nm-btn">Delete</button>
+    <li *ngFor="let folder of scanResult$ | async">
+      <div>
+        {{ folder.path }}
+      </div>
+      <div>LOADING: {{ folder.deleting }}</div>
+      <div>DELETED: {{ folder.deleted }}</div>
+      <button (click)="delete(folder.path)" class="btn-default">Delete</button>
     </li>
   </ul>
 </ng-template>

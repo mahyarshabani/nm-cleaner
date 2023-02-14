@@ -28,7 +28,8 @@
       "@util": ["src/app/utils/index.ts"],
       "@constant": ["src/app/constant/index.ts"],
       "@enum": ["src/app/enum/index.ts"],
-      "@interface": ["src/app/interface/index.ts"]
+      "@interface": ["src/app/interface/index.ts"],
+      "@model": ["src/app/model/index.ts"],
     }
   },
   "angularCompilerOptions": {
