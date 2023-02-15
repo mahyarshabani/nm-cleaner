@@ -7,6 +7,7 @@ import { TitleBarComponent } from './layout/title-bar/title-bar.component';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuComponent } from './layout/menu/menu.component';
+import { ELECTRON_API_TOKEN } from './constant/electron-api-token';
 
 @NgModule({
   declarations: [AppComponent, TitleBarComponent, MenuComponent],
@@ -16,7 +17,9 @@ import { MenuComponent } from './layout/menu/menu.component';
     AppRoutingModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [
+    { provide: ELECTRON_API_TOKEN, useValue: window.electronAPI, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

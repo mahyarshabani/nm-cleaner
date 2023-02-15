@@ -1,5 +1,7 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Inject, Injectable, NgZone } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { ELECTRON_API_TOKEN } from '../constant/electron-api-token';
+import { IElectronAPI } from '../type.d/renderer';
 
 @Injectable({
   providedIn: 'root',
@@ -15,8 +17,11 @@ export class ElectronDeleteService {
     return this.deleteLoadingBS$.getValue();
   }
 
-  constructor(private ngZone: NgZone) {
-    window.electronAPI.deleteDone((_, deletedFolder: string) => {
+  constructor(
+    private ngZone: NgZone,
+    @Inject(ELECTRON_API_TOKEN) private electronAPI: IElectronAPI
+  ) {
+    this.electronAPI.deleteDone((_, deletedFolder: string) => {
       this.ngZone.run(() => {
         const decreased = this.deleteLoading;
         decreased.delete(deletedFolder);
@@ -28,6 +33,6 @@ export class ElectronDeleteService {
 
   delete(folder: string) {
     this.deleteLoadingBS$.next(this.deleteLoading.add(folder));
-    window.electronAPI.delete(folder);
+    this.electronAPI.delete(folder);
   }
 }

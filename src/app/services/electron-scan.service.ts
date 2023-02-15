@@ -1,7 +1,9 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Inject, Injectable, NgZone } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
 
 import { ScanResult } from '@model';
+import { ELECTRON_API_TOKEN } from '../constant/electron-api-token';
+import { IElectronAPI } from '../type.d/renderer';
 
 @Injectable({
   providedIn: 'root',
@@ -27,13 +29,16 @@ export class ElectronScanService {
     return this.scanLoadingBS$.getValue();
   }
 
-  constructor(private ngZone: NgZone) {
-    window.electronAPI.returnScanResult((_, value: string) => {
+  constructor(
+    private ngZone: NgZone,
+    @Inject(ELECTRON_API_TOKEN) private electronAPI: IElectronAPI
+  ) {
+    this.electronAPI.returnScanResult((_, value: string) => {
       this.ngZone.run(() => {
         this.scanResultBS$.next([...this.scanResult, new ScanResult(value)]);
       });
     });
-    window.electronAPI.scanCompleted(() => {
+    this.electronAPI.scanCompleted(() => {
       this.ngZone.run(() => {
         this.scanLoadingBS$.next(false);
       });
@@ -43,6 +48,6 @@ export class ElectronScanService {
   startScan(selectedFolder: string) {
     this.scanLoadingBS$.next(true);
     this.scanResultBS$.next([]);
-    window.electronAPI.scan(selectedFolder);
+    this.electronAPI.scan(selectedFolder);
   }
 }
