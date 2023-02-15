@@ -20,7 +20,8 @@
     "lint": "npm run lint:main && npm run lint:renderer",
     "test:prod": "ng test --browsers=ChromeHeadless --watch=false --code-coverage",
     "test:dev": "ng test",
-    "test": "npm run test:dev"
+    "test": "npm run test:dev",
+    "prepare": "husky install"
   },
   "main": "app/main.js",
   "private": true,
@@ -67,6 +68,7 @@
     "postcss": "^8.4.21",
     "prettier": "^2.8.2",
     "typescript": "^4.8.4",
-    "wait-on": "^7.0.1"
+    "wait-on": "^7.0.1",
+    "husky": "^8.0.0"
   }
 }
