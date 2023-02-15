@@ -1,32 +1,27 @@
-import { ScanComponent } from './scan.component';
-import { ScanResult } from '@model';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
-import { ELECTRON_API_TOKEN } from '../../constant/electron-api-token';
-import IpcRendererEvent = Electron.IpcRendererEvent;
+import { of } from 'rxjs';
 
-const scanResult: ScanResult[] = [
-  new ScanResult('path/1'),
-  new ScanResult('path/2'),
-];
-
-const p = {
-  openSelectFolderDialog: () => 0,
-  scan: (targetFolder: string) => 0,
-  returnScanResult: (
-    callback: (event: IpcRendererEvent, value: string) => void
-  ) => '',
-  scanCompleted: (callback: (event: IpcRendererEvent) => void) => '',
-  delete: (targetFolder: string) => 0,
-  deleteDone: (
-    callback: (event: IpcRendererEvent, deletedPath: string) => void
-  ) => 0,
-};
+import { ScanComponent } from './scan.component';
+import { ElectronDeleteService, ElectronScanService } from '@service';
 
 describe('ScanComponent', () => {
   let spectator: Spectator<ScanComponent>;
   const createComponent = createComponentFactory({
     component: ScanComponent,
-    providers: [{ provide: ELECTRON_API_TOKEN, useValue: p }],
+    componentProviders: [
+      {
+        provide: ElectronDeleteService,
+        useValue: {
+          deleteDone$: of(''),
+        },
+      },
+      {
+        provide: ElectronScanService,
+        useValue: {
+          scanResult$: of([]),
+        },
+      },
+    ],
   });
 
   beforeEach(() => {
@@ -34,11 +29,13 @@ describe('ScanComponent', () => {
   });
 
   it('should create', () => {
-    // weatherService.getWeatherData.andReturn(of(mockWeatherData));
-    //
-    // spectator = createComponent({
-    //   providers: [{ provide: WeatherDataApi, useValue: weatherService }],
-    // });
     expect(spectator.component).toBeTruthy();
+  });
+
+  it('scan button should not call scan method when selected folder is not defined', () => {
+    spyOn(spectator.component, 'scan');
+    const scanButton = spectator.query('#scan_button');
+    spectator.click(scanButton!);
+    expect(spectator.component.scan).toHaveBeenCalledTimes(0);
   });
 });
