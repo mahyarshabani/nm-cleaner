@@ -2,3 +2,8 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 npm run lint
+if [ "$(git rev-parse --abbrev-ref HEAD)" = "master" ]; then
+  npm run test:prod
+else
+  npm run test
+fi
