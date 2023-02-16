@@ -1,7 +1,4 @@
-@import "../../../styles/variables";
-
 $transitionTime: 300ms;
-$lightColor: #727272;
 
 ul.menu {
   all: unset;
@@ -14,32 +11,32 @@ ul.menu {
     align-items: center;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    border: solid $lightColor;
+    border: solid white;
     border-top: none;
     cursor: pointer;
     transition: border-color $transitionTime ease-in-out;
 
     &:hover:not(.active) {
       transition: border-color $transitionTime ease-in-out;
-      border-color: $primary;
+      border-color: var(--color-green);
 
       .icon {
         transition: color $transitionTime ease-in-out;
-        color: $primary;
+        color: var(--color-green);
       }
     }
 
     &.active {
-      border-color: $primary;
+      border-color: var(--color-green);
       cursor: default;
 
       .icon {
-        color: $primary;
+        color: var(--color-green);
       }
     }
 
     .icon {
-      color: $lightColor;
+      color: white;
       font-size: 1.2rem;
       transition: color $transitionTime ease-in-out;
     }

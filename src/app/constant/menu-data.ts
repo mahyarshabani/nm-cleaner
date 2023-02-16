@@ -2,8 +2,8 @@ import { MenuAnimationsEnum } from '@enum';
 
 export class MENU_DATA {
   static ITEM_BORDER_WIDTH = 1;
-  static ITEM_HEIGHT = 25;
-  static SELECTED_ITEM_HEIGHT = 30;
+  static ITEM_HEIGHT = 20;
+  static SELECTED_ITEM_HEIGHT = 25;
   static HIDDEN_ITEM_TOP = MENU_DATA.ITEM_HEIGHT + MENU_DATA.ITEM_BORDER_WIDTH;
   static MARGIN_LEFT = 10;
   static ITEM_WIDTH = 30;
