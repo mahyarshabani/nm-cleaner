@@ -8,6 +8,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/scan/scan.module').then((module) => module.ScanModule),
   },
+  {
+    path: 'settings',
+    loadChildren: () =>
+      import('./pages/settings/settings.module').then(
+        (module) => module.SettingsModule
+      ),
+  },
 ];
 
 @NgModule({

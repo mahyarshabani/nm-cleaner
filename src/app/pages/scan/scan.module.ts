@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ScanComponent } from './scan.component';
 import { Route, RouterModule } from '@angular/router';
+import { SelectComponent } from './select/select.component';
 
 const routes: Route[] = [{ path: '', component: ScanComponent }];
 
 @NgModule({
-  declarations: [ScanComponent],
+  declarations: [ScanComponent, SelectComponent],
   imports: [CommonModule, RouterModule.forChild(routes)],
 })
 export class ScanModule {}

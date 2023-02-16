@@ -2,7 +2,8 @@
   <li
     #menuItemElement
     *ngFor="let menuItem of menuItems; let i = index"
-    [ngClass]="{ active: orderedMenuItems[0].page === menuItem.page }"
+    routerLinkActive="active"
+    [routerLink]="menuItem.route"
     [id]="menuItem.page"
     class="not-draggable"
     (click)="activatePage(menuItem)"

@@ -22,10 +22,10 @@ import { MENU_DATA } from '@constant';
 export class MenuComponent implements AfterViewInit {
   @ViewChildren('menuItemElement') menuItemElements: QueryList<ElementRef>;
   menuItems: IMenuItem[] = [
-    { page: PageEnum.HOME, icon: 'home' },
-    { page: PageEnum.SETTINGS, icon: 'settings' },
-    { page: PageEnum.CUSTOM, icon: 'search' },
-    { page: PageEnum.CUSTOM2, icon: 'done' },
+    { page: PageEnum.HOME, icon: 'home', route: 'scan' },
+    { page: PageEnum.SETTINGS, icon: 'settings', route: 'settings' },
+    // { page: PageEnum.CUSTOM, icon: 'search', route: 'scan' },
+    // { page: PageEnum.CUSTOM2, icon: 'done', route: 'scan' },
   ];
   orderedMenuItems: IMenuItem[] = this.menuItems;
 
