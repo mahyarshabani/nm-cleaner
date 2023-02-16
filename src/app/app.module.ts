@@ -18,7 +18,7 @@ import { ELECTRON_API_TOKEN } from './constant/electron-api-token';
     BrowserAnimationsModule,
   ],
   providers: [
-    { provide: ELECTRON_API_TOKEN, useValue: window.electronAPI, multi: true },
+    { provide: ELECTRON_API_TOKEN, useValue: window.electronAPI, multi: false },
   ],
   bootstrap: [AppComponent],
 })
