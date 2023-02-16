@@ -6,9 +6,9 @@ import {
   QueryList,
   ViewChildren,
 } from '@angular/core';
+
 import { IMenuItem } from '@interface';
 import { PageEnum } from '@enum';
-import { ListUtil } from '@util';
 import { MenuAnimationService } from '@service';
 import { MENU_DATA } from '@constant';
 
@@ -27,7 +27,8 @@ export class MenuComponent implements AfterViewInit {
     // { page: PageEnum.CUSTOM, icon: 'search', route: 'scan' },
     // { page: PageEnum.CUSTOM2, icon: 'done', route: 'scan' },
   ];
-  orderedMenuItems: IMenuItem[] = this.menuItems;
+
+  private activePage: PageEnum = this.menuItems[0].page;
 
   constructor(private menuAnimationService: MenuAnimationService) {}
 
@@ -35,50 +36,39 @@ export class MenuComponent implements AfterViewInit {
     this.setInitialMenuItemsStyles();
   }
 
-  activatePage(clickedItem: IMenuItem) {
-    if (clickedItem === this.orderedMenuItems[0]) {
-      return;
-    }
-    const previousActiveItem = this.orderedMenuItems[0];
-    const clickedItemIndex = this.orderedMenuItems.indexOf(clickedItem);
-    this.orderedMenuItems = ListUtil.array_move(
-      this.orderedMenuItems,
-      clickedItemIndex,
-      0
-    );
-    this.initAnimations(previousActiveItem, clickedItem);
+  activatePage(page: PageEnum) {
+    this.initAnimations(this.activePage, page);
+    this.activePage = page;
   }
 
-  private initAnimations(
-    previousActiveItem: IMenuItem,
-    newActiveItem: IMenuItem
-  ) {
-    const [previousActiveElement, newActiveElement] = this.findItems(
-      previousActiveItem,
-      newActiveItem
-    );
+  private initAnimations(previousPage: PageEnum, newPage: PageEnum) {
+    const [previousActiveElement, newActiveElement] =
+      this.findNewAndOldActiveMenuItems(previousPage, newPage);
     this.menuAnimationService.buildPreviousActiveElementAnimations(
       previousActiveElement
     );
     this.menuAnimationService.buildNewActiveElementAnimations(newActiveElement);
+    const newOrderedItems = [...this.menuItems].sort((item) =>
+      item.page === newPage ? -1 : 0
+    );
     this.menuAnimationService.buildReorderingAnimations(
       this.menuItemElements,
-      this.orderedMenuItems
+      newOrderedItems
     );
   }
 
-  private findItems(
-    previousActiveItem: IMenuItem,
-    newActiveItem: IMenuItem
+  private findNewAndOldActiveMenuItems(
+    previousPage: PageEnum,
+    newPage: PageEnum
   ): [ElementRef, ElementRef] {
     let newActiveElement!: ElementRef;
     let previousActiveElement!: ElementRef;
     this.menuItemElements.forEach((el) => {
       switch (el.nativeElement.id) {
-        case newActiveItem.page:
+        case newPage:
           newActiveElement = el;
           break;
-        case previousActiveItem.page:
+        case previousPage:
           previousActiveElement = el;
           break;
       }

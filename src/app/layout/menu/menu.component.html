@@ -6,7 +6,7 @@
     [routerLink]="menuItem.route"
     [id]="menuItem.page"
     class="not-draggable"
-    (click)="activatePage(menuItem)"
+    (click)="activatePage(menuItem.page)"
   >
     <span class="icon material-icons-outlined">{{ menuItem.icon }}</span>
   </li>
