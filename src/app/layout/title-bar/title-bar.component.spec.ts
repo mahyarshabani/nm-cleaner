@@ -1,23 +1,24 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TitleBarComponent } from './title-bar.component';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { ELECTRON_API_TOKEN } from '../../constant/electron-api-token';
 
 describe('TitleBarComponent', () => {
-  let component: TitleBarComponent;
-  let fixture: ComponentFixture<TitleBarComponent>;
+  let spectator: Spectator<TitleBarComponent>;
+  const createComponent = createComponentFactory({
+    component: TitleBarComponent,
+    componentProviders: [
+      {
+        provide: ELECTRON_API_TOKEN,
+        useValue: {},
+      },
+    ],
+  });
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ TitleBarComponent ]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(TitleBarComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    spectator = createComponent();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

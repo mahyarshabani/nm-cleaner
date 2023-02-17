@@ -9,7 +9,10 @@ import { DeleteMessageEnum, ScanMessageEnum } from './enum';
 import * as path from 'path';
 import { IDeleteMessage, IMessage, IScanMessage } from './interface';
 
-type MessageListenerType = ScanMessageEnum.RETURN_RESULT | ScanMessageEnum.SCAN_COMPLETED | DeleteMessageEnum.DELETE_DONE;
+type MessageListenerType =
+  | ScanMessageEnum.RETURN_RESULT
+  | ScanMessageEnum.SCAN_COMPLETED
+  | DeleteMessageEnum.DELETE_DONE;
 
 export class Controller {
   private fsUtility: Electron.UtilityProcess;
@@ -23,6 +26,9 @@ export class Controller {
     ipcMain.handle('dialog:selectFolder', this.handleFolderOpen.bind(this));
     ipcMain.handle('fs:scan', this.handleScan.bind(this));
     ipcMain.handle('fs:delete', this.handleDelete.bind(this));
+    ipcMain.handle('window:close', this.handleCloseWindow.bind(this));
+    ipcMain.handle('window:maximize', this.handleMaximizeWindow.bind(this));
+    ipcMain.handle('window:minimize', this.handleMinimizeWindow.bind(this));
 
     this.messageListener = (process) => {
       if (process.type === ScanMessageEnum.RETURN_RESULT) {
@@ -63,5 +69,21 @@ export class Controller {
       payload: targetFolder,
     };
     this.fsUtility.postMessage(deleteMessage);
+  }
+
+  private handleCloseWindow() {
+    this.window.close();
+  }
+
+  private handleMinimizeWindow() {
+    this.window.minimize();
+  }
+
+  private handleMaximizeWindow() {
+    if (this.window.isMaximized()) {
+      this.window.restore();
+    } else {
+      this.window.maximize();
+    }
   }
 }

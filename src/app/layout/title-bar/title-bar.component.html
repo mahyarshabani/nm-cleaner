@@ -1,3 +1,14 @@
 <header class="draggable">
   <app-menu></app-menu>
+  <div class="actions not-draggable">
+    <button class="minimize" (click)="minimize()">
+      <span class="material-icons">minimize</span>
+    </button>
+    <button class="maximize" (click)="maximize()">
+      <span class="material-icons">content_copy</span>
+    </button>
+    <button class="close" (click)="close()">
+      <span class="material-icons">close</span>
+    </button>
+  </div>
 </header>

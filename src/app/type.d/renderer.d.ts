@@ -14,6 +14,9 @@ export interface IElectronAPI {
   deleteDone: (
     callback: (event: IpcRendererEvent, deletedPath: string) => void
   ) => Electron.IpcRenderer;
+  closeWindow: () => void;
+  minimizeWindow: () => void;
+  maximizeWindow: () => void;
 }
 
 declare global {
