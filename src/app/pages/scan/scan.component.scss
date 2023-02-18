@@ -2,6 +2,33 @@ li:hover button {
   display: block;
 }
 
-* {
-  color: white;
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+h1.title {
+  all: unset;
+  font-size: 4rem;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+  margin-top: 2rem;
+  .nm {
+    color: var(--color-green);
+  }
+  .c {
+    color: var(--color-yellow);
+  }
+}
+
+.description {
+  font-size: 1rem;
+  font-weight: normal;
+  text-align: center;
+}
+
+app-select {
+  flex-grow: 1;
 }

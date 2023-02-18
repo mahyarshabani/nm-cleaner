@@ -1,23 +1,44 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  createComponentFactory,
+  Spectator,
+  SpectatorElement,
+} from '@ngneat/spectator';
 
+import { ElectronScanService, ElectronSelectService } from '@service';
 import { SelectComponent } from './select.component';
 
 describe('SelectComponent', () => {
-  let component: SelectComponent;
-  let fixture: ComponentFixture<SelectComponent>;
+  let spectator: Spectator<SelectComponent>;
+  const createComponent = createComponentFactory({
+    component: SelectComponent,
+    componentProviders: [
+      {
+        provide: ElectronSelectService,
+        useValue: {
+          openSelectFolder: () => null,
+        },
+      },
+      {
+        provide: ElectronScanService,
+        useValue: {},
+      },
+    ],
+  });
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ SelectComponent ]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(SelectComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    spectator = createComponent();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
+  });
+
+  it('should open select folder dialog when the drag and drop area clicked', () => {
+    spyOn(spectator.component, 'openSelectFolderDialog');
+    const dragAndDropArea = spectator.query(
+      '.drag-and-drop-area'
+    ) as SpectatorElement;
+    spectator.click(dragAndDropArea);
+    expect(spectator.component.openSelectFolderDialog).toHaveBeenCalledTimes(1);
   });
 });

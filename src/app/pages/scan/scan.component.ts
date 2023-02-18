@@ -1,11 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { combineLatest, map, merge, Observable, withLatestFrom } from 'rxjs';
 
-import {
-  ElectronDeleteService,
-  ElectronScanService,
-  ElectronSelectService,
-} from '@service';
+import { ElectronDeleteService, ElectronScanService } from '@service';
 import { ScanResult } from '@model';
 
 @Component({
@@ -43,23 +39,6 @@ export class ScanComponent {
 
   constructor(
     public electronScanService: ElectronScanService,
-    public electronSelectService: ElectronSelectService,
     public electronDeleteService: ElectronDeleteService
   ) {}
-
-  openSelectFolderDialog() {
-    this.electronSelectService.openSelectFolder();
-  }
-
-  async scan() {
-    this.page = 'result';
-    const selectedFolderExist = this.electronSelectService.selectedFolder;
-    if (selectedFolderExist) {
-      this.electronScanService.startScan(selectedFolderExist);
-    }
-  }
-
-  delete(folder: string) {
-    this.electronDeleteService.delete(folder);
-  }
 }

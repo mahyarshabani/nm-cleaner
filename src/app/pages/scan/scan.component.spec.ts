@@ -31,11 +31,4 @@ describe('ScanComponent', () => {
   it('should create', () => {
     expect(spectator.component).toBeTruthy();
   });
-
-  it('scan button should not call scan method when selected folder is not defined', () => {
-    spyOn(spectator.component, 'scan');
-    const scanButton = spectator.query('#scan_button');
-    spectator.click(scanButton!);
-    expect(spectator.component.scan).toHaveBeenCalledTimes(0);
-  });
 });

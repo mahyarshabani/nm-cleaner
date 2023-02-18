@@ -1,5 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { ELECTRON_API_TOKEN } from '../constant/electron-api-token';
+import { IElectronAPI } from '../type.d/renderer';
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +14,14 @@ export class ElectronSelectService {
     return this.selectedFolderBS$.getValue();
   }
 
+  set selectedFolder(folder) {
+    this.selectedFolderBS$.next(folder);
+  }
+
+  constructor(@Inject(ELECTRON_API_TOKEN) private electronAPI: IElectronAPI) {}
+
   openSelectFolder(): void {
-    window.electronAPI.openSelectFolderDialog().then((selectedFolder) => {
+    this.electronAPI.openSelectFolderDialog().then((selectedFolder) => {
       this.selectedFolderBS$.next(selectedFolder);
     });
   }
