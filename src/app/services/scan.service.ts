@@ -8,7 +8,7 @@ import { IElectronAPI } from '../type.d/renderer';
 @Injectable({
   providedIn: 'root',
 })
-export class ElectronScanService {
+export class ScanService {
   private scanResultBS$ = new BehaviorSubject<ScanResult[]>([]);
   private scanLoadingBS$ = new BehaviorSubject<boolean>(false);
   scanResult$ = this.scanResultBS$

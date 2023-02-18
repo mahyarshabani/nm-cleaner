@@ -1,12 +1,13 @@
 import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+
 import { ELECTRON_API_TOKEN } from '../constant/electron-api-token';
 import { IElectronAPI } from '../type.d/renderer';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ElectronSelectService {
+export class SelectService {
   private selectedFolderBS$ = new BehaviorSubject<string>('');
   public selectedFolder$ = this.selectedFolderBS$.asObservable();
 

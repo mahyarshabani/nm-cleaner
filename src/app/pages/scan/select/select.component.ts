@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ElectronScanService, ElectronSelectService } from '@service';
-import { map } from 'rxjs';
+
+import { ScanService, SelectService } from '@service';
 
 @Component({
   selector: 'app-select',
@@ -10,8 +10,8 @@ import { map } from 'rxjs';
 })
 export class SelectComponent {
   constructor(
-    public electronSelectService: ElectronSelectService,
-    private electronScanService: ElectronScanService
+    public electronSelectService: SelectService,
+    private electronScanService: ScanService
   ) {}
 
   openSelectFolderDialog() {

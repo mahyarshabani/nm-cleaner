@@ -2,7 +2,7 @@ import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { of } from 'rxjs';
 
 import { ScanComponent } from './scan.component';
-import { ElectronDeleteService, ElectronScanService } from '@service';
+import { DeleteService, ScanService } from '@service';
 
 describe('ScanComponent', () => {
   let spectator: Spectator<ScanComponent>;
@@ -10,13 +10,13 @@ describe('ScanComponent', () => {
     component: ScanComponent,
     componentProviders: [
       {
-        provide: ElectronDeleteService,
+        provide: DeleteService,
         useValue: {
           deleteDone$: of(''),
         },
       },
       {
-        provide: ElectronScanService,
+        provide: ScanService,
         useValue: {
           scanResult$: of([]),
         },

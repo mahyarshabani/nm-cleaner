@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { combineLatest, map, merge, Observable, withLatestFrom } from 'rxjs';
 
-import { ElectronDeleteService, ElectronScanService } from '@service';
+import { DeleteService, ScanService } from '@service';
 import { ScanResult } from '@model';
 
 @Component({
@@ -38,7 +38,7 @@ export class ScanComponent {
   );
 
   constructor(
-    public electronScanService: ElectronScanService,
-    public electronDeleteService: ElectronDeleteService
+    public electronScanService: ScanService,
+    public electronDeleteService: DeleteService
   ) {}
 }

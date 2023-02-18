@@ -1,12 +1,13 @@
 import { Inject, Injectable, NgZone } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
+
 import { ELECTRON_API_TOKEN } from '../constant/electron-api-token';
 import { IElectronAPI } from '../type.d/renderer';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ElectronDeleteService {
+export class DeleteService {
   private deleteLoadingBS$ = new BehaviorSubject<Set<string>>(new Set());
   deleteLoading$ = this.deleteLoadingBS$.asObservable();
 

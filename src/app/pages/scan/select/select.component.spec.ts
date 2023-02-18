@@ -4,7 +4,7 @@ import {
   SpectatorElement,
 } from '@ngneat/spectator';
 
-import { ElectronScanService, ElectronSelectService } from '@service';
+import { ScanService, SelectService } from '@service';
 import { SelectComponent } from './select.component';
 
 describe('SelectComponent', () => {
@@ -13,13 +13,13 @@ describe('SelectComponent', () => {
     component: SelectComponent,
     componentProviders: [
       {
-        provide: ElectronSelectService,
+        provide: SelectService,
         useValue: {
           openSelectFolder: () => null,
         },
       },
       {
-        provide: ElectronScanService,
+        provide: ScanService,
         useValue: {},
       },
     ],
