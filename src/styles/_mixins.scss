@@ -1,3 +1,26 @@
 @mixin createTransition($property) {
   transition: $property var(--transition-duration) var(--transition-effect);
 }
+
+@mixin vertical-scrollbar {
+  overflow-y: auto;
+  scrollbar-color: var(--color-green) transparent;
+  scrollbar-width: thin;
+
+  ::-webkit-scrollbar-corner {
+    background: var(--color-green);
+  }
+  &::-webkit-scrollbar {
+    width: 7px;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 7px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 7px;
+    background-color: var(--color-green);
+  }
+}
