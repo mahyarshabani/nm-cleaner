@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { combineLatest, map, merge, Observable, withLatestFrom } from 'rxjs';
-
-import { DeleteService, ScanService } from '@service';
-import { ScanResult } from '@model';
+import { BehaviorSubject } from 'rxjs';
+import { ScanPageEnum } from '@enum';
 
 @Component({
   selector: 'app-scan',
@@ -11,34 +9,19 @@ import { ScanResult } from '@model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScanComponent {
-  page = 'select';
-  combinedScanLoading$ = combineLatest([
-    this.electronScanService.scanResult$,
-    this.electronDeleteService.deleteLoading$,
-  ]).pipe(
-    map(([scanResult, deleteLoading]) => {
-      scanResult.forEach((result) => {
-        result.deleting = !!deleteLoading.has(result.path);
-      });
-      return scanResult;
-    })
-  );
-  scanResult$: Observable<ScanResult[]> = merge(
-    this.combinedScanLoading$,
-    this.electronDeleteService.deleteDone$.pipe(
-      withLatestFrom(this.combinedScanLoading$),
-      map(([deletedPath, scanResult]) => {
-        const found = scanResult.find((item) => item.path === deletedPath);
-        if (found) {
-          found.deleted = true;
-        }
-        return scanResult;
-      })
-    )
-  );
+  private pageBS$ = new BehaviorSubject<ScanPageEnum>(ScanPageEnum.SELECT);
+  public page$ = this.pageBS$.asObservable();
+  PAGE = ScanPageEnum;
 
-  constructor(
-    public electronScanService: ScanService,
-    public electronDeleteService: DeleteService
-  ) {}
+  goToStart() {
+    this.pageBS$.next(ScanPageEnum.START);
+  }
+
+  goToResult() {
+    this.pageBS$.next(ScanPageEnum.RESULT);
+  }
+
+  goToSelect() {
+    this.pageBS$.next(ScanPageEnum.SELECT);
+  }
 }

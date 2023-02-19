@@ -1,8 +1,13 @@
+$title-bar-height: 30px;
 :host {
   height: 100%;
   display: flex;
   flex-direction: column;
   > main {
     flex-grow: 1;
+    height: calc(100% - $title-bar-height);
+  }
+  app-title-bar {
+    height: $title-bar-height;
   }
 }

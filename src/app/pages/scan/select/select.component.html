@@ -1,33 +1,13 @@
 <div
-  class="container"
-  *ngIf="{
-    selectedFolder: electronSelectService.selectedFolder$ | async
-  } as observable"
+  appDragFileOver
+  activeClass="active"
+  activeDescription="Yes, drop it!"
+  class="drag-and-drop-area"
+  (click)="openSelectFolderDialog()"
+  (folderDropped)="selectFolder($event)"
 >
-  <div
-    *ngIf="!observable.selectedFolder"
-    appDragFileOver
-    activeClass="active"
-    activeDescription="Yes, drop it!"
-    class="drag-and-drop-area"
-    (click)="openSelectFolderDialog()"
-    (folderDropped)="selectFolder($event)"
-  >
-    <p class="description" #description>
-      Drag your folder here or click on the area to choose.
-    </p>
-  </div>
-  <div class="ready">
-    <div class="selected-folder">
-      <div class="change" (click)="cancelFolderSelection()">Change</div>
-      {{ observable.selectedFolder }}
-    </div>
-    <button
-      class="btn-default scan"
-      *ngIf="observable.selectedFolder"
-      (click)="startScan()"
-    >
-      SCAN
-    </button>
-  </div>
+  <!--TODO: is there any better way to select-->
+  <p class="description" #description>
+    Drag your folder here or click on the area to choose.
+  </p>
 </div>

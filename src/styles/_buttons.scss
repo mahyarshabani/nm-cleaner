@@ -34,3 +34,19 @@
   border-color: var(--color-green);
   color: var(--color-green);
 }
+
+.btn-danger {
+  @include btn();
+  @include normalSize();
+
+  &.compact {
+    @include compactBtn();
+  }
+
+  &:hover {
+    background-color: var(--color-red-50);
+  }
+
+  border-color: var(--color-red);
+  color: var(--color-red);
+}

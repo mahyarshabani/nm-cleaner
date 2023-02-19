@@ -1,27 +1,22 @@
 import {
   createComponentFactory,
+  mockProvider,
   Spectator,
   SpectatorElement,
 } from '@ngneat/spectator';
+import { of } from 'rxjs';
 
-import { ScanService, SelectService } from '@service';
+import { SelectService } from '@service';
 import { SelectComponent } from './select.component';
 
 describe('SelectComponent', () => {
   let spectator: Spectator<SelectComponent>;
   const createComponent = createComponentFactory({
     component: SelectComponent,
-    componentProviders: [
-      {
-        provide: SelectService,
-        useValue: {
-          openSelectFolder: () => null,
-        },
-      },
-      {
-        provide: ScanService,
-        useValue: {},
-      },
+    providers: [
+      mockProvider(SelectService, {
+        selectedFolder$: of(''),
+      }),
     ],
   });
 

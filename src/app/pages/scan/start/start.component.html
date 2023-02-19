@@ -1,0 +1,14 @@
+<div
+  class="container"
+  *ngIf="{
+    selectedFolder: electronSelectService.selectedFolder$ | async
+  } as observable"
+>
+  <div class="selected-folder">
+    <input [value]="observable.selectedFolder" />
+    <button class="btn-default" (click)="cancelFolderSelection()">
+      <div class="change">Change</div>
+    </button>
+  </div>
+  <button class="btn-default scan" (click)="startScan()">SCAN</button>
+</div>

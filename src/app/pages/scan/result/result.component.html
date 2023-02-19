@@ -1,0 +1,36 @@
+<ul class="result">
+  <li *ngFor="let folder of scanResult$ | async">
+    <div class="path">
+      {{ folder.path }}
+    </div>
+    <div
+      class="status"
+      (click)="delete(folder)"
+      [ngClass]="
+        folder.deleting ? 'pending' : folder.deleted ? 'done' : 'delete'
+      "
+    >
+      <span class="material-icons-outlined" *ngIf="folder.deleting">
+        pending
+      </span>
+      <span class="material-icons-outlined" *ngIf="folder.deleted"> done </span>
+      <span class="material-icons" *ngIf="!folder.deleting && !folder.deleted">
+        delete_outline
+      </span>
+    </div>
+  </li>
+</ul>
+
+<!--<div *ngIf="folder.deleting">-->
+<!--  <span class="material-icons-outlined"> pending </span>-->
+<!--</div>-->
+<!--<div *ngIf="folder.deleted">-->
+<!--  <span class="material-icons-outlined"> done </span>-->
+<!--</div>-->
+<!--<button-->
+<!--  *ngIf="!folder.deleting && !folder.deleted"-->
+<!--  (click)="delete(folder.path)"-->
+<!--  class="btn-danger delete-btn"-->
+<!--&gt;-->
+<!--  <span class="material-icons-outlined"> delete </span>-->
+<!--</button>-->

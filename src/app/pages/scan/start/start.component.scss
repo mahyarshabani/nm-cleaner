@@ -1,0 +1,52 @@
+@mixin center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  .selected-folder {
+    width: 90%;
+    height: 3rem;
+    margin-bottom: 3rem;
+    display: flex;
+
+    input {
+      all: unset;
+      display: block;
+      height: 100%;
+      flex-grow: 1;
+      border: 2px solid var(--color-green);
+      border-radius: 3px;
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+      padding-left: 1rem;
+    }
+
+    button {
+      height: 100%;
+      width: 5rem;
+      border-bottom-left-radius: 0;
+      border-left: none;
+      border-top-left-radius: 0;
+      padding: 0;
+      text-align: center;
+    }
+  }
+
+  button.scan {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    font-size: 2rem;
+    text-align: center;
+  }
+}

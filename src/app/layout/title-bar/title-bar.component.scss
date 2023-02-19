@@ -1,6 +1,6 @@
 header {
   width: 100%;
-  height: 30px;
+  height: 100%;
   background-color: var(--color-black);
   display: flex;
   flex-direction: row;
@@ -49,7 +49,7 @@ header {
 
     &.close {
       &:hover {
-        background-color: var(--color-close-btn-hover);
+        background-color: var(--color-red);
       }
     }
   }

@@ -23,7 +23,7 @@ export class SelectService {
 
   openSelectFolder(): void {
     this.electronAPI.openSelectFolderDialog().then((selectedFolder) => {
-      this.selectedFolderBS$.next(selectedFolder);
+      this.selectedFolder = selectedFolder;
     });
   }
 }

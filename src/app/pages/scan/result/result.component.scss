@@ -1,0 +1,63 @@
+@import "../../../../styles/mixins";
+
+:host {
+  height: 100%;
+  overflow: auto;
+}
+
+ul.result {
+  all: unset;
+  overflow: auto;
+
+  li {
+    all: unset;
+    display: flex;
+    margin-top: 1rem;
+
+    .status {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      height: 30px;
+      width: 30px;
+      justify-content: center;
+      border: 1px solid;
+      border-radius: 3px;
+      margin-left: 1rem;
+    }
+
+    .path {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+    }
+  }
+}
+
+span[class^="material"] {
+  font-size: 18px;
+}
+
+.delete {
+  color: var(--color-red);
+  border-color: var(--color-red);
+  cursor: pointer;
+  @include createTransition(all);
+
+  &:hover {
+    @include createTransition(all);
+    background-color: var(--color-red-50);
+  }
+}
+
+.pending {
+  @include createTransition(all);
+  color: var(--color-yellow);
+  border-color: var(--color-yellow);
+}
+
+.done {
+  @include createTransition(all);
+  color: var(--color-green);
+  border-color: var(--color-green);
+}
