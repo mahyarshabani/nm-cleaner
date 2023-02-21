@@ -15,6 +15,6 @@
       (scanStarted)="goToResult()"
       *ngIf="(page$ | async) === PAGE.START"
     ></app-start>
-    <app-result *ngIf="(page$ | async) === PAGE.RESULT"></app-result>
+    <app-result (changeFolder)="goToSelect()" *ngIf="(page$ | async) === PAGE.RESULT"></app-result>
   </div>
 </div>

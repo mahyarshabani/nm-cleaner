@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { combineLatest, map, merge, Observable, withLatestFrom } from 'rxjs';
 import { ScanResult } from '@model';
 import { DeleteService, ScanService } from '@service';
@@ -10,6 +10,7 @@ import { DeleteService, ScanService } from '@service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResultComponent {
+  @Output() changeFolder = new EventEmitter<void>();
   private combinedScanLoading$ = combineLatest([
     this.electronScanService.scanResult$,
     this.electronDeleteService.deleteLoading$,

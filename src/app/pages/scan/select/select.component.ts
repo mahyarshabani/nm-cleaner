@@ -21,6 +21,7 @@ export class SelectComponent implements OnInit {
   constructor(public electronSelectService: SelectService) {}
 
   ngOnInit() {
+    this.electronSelectService.selectedFolder = '';
     this.electronSelectService.selectedFolder$
       .pipe(
         filter((folder) => !!folder),

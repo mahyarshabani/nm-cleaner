@@ -20,17 +20,6 @@
     </div>
   </li>
 </ul>
-
-<!--<div *ngIf="folder.deleting">-->
-<!--  <span class="material-icons-outlined"> pending </span>-->
-<!--</div>-->
-<!--<div *ngIf="folder.deleted">-->
-<!--  <span class="material-icons-outlined"> done </span>-->
-<!--</div>-->
-<!--<button-->
-<!--  *ngIf="!folder.deleting && !folder.deleted"-->
-<!--  (click)="delete(folder.path)"-->
-<!--  class="btn-danger delete-btn"-->
-<!--&gt;-->
-<!--  <span class="material-icons-outlined"> delete </span>-->
-<!--</button>-->
+<div>
+  <button class="btn-default" (click)="changeFolder.emit()">Change</button>
+</div>
