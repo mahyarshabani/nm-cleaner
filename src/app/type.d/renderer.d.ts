@@ -5,7 +5,10 @@ export interface IElectronAPI {
   openSelectFolderDialog: () => Promise<string>;
   scan: (targetFolder: string) => void;
   returnScanResult: (
-    callback: (event: IpcRendererEvent, value: string) => void
+    callback: (
+      event: IpcRendererEvent,
+      value: { path: string; mTime: Date }
+    ) => void
   ) => Electron.IpcRenderer;
   scanCompleted: (
     callback: (event: IpcRendererEvent) => void

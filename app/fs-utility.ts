@@ -1,6 +1,7 @@
 import { DeleteMessageEnum, ScanMessageEnum } from './enum';
 import { IDeleteMessage, IScanMessage } from './interface';
 import { FileService } from './services/file-service';
+import { IScanResult } from './interface/scan-result.interface';
 
 process.parentPort.on('message', async (e) => {
   const fileService = new FileService();
@@ -8,7 +9,7 @@ process.parentPort.on('message', async (e) => {
     fileService.startScan(e.data.payload as string);
     fileService.scanResult$.subscribe({
       next: (item) => {
-        const message: IScanMessage<string> = {
+        const message: IScanMessage<IScanResult> = {
           type: ScanMessageEnum.RETURN_RESULT,
           payload: item,
         };

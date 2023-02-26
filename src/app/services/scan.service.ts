@@ -33,9 +33,9 @@ export class ScanService {
     private ngZone: NgZone,
     @Inject(ELECTRON_API_TOKEN) private electronAPI: IElectronAPI
   ) {
-    this.electronAPI.returnScanResult((_, value: string) => {
+    this.electronAPI.returnScanResult((_, value) => {
       this.ngZone.run(() => {
-        this.scanResultBS$.next([...this.scanResult, new ScanResult(value)]);
+        this.scanResultBS$.next([...this.scanResult, new ScanResult(value.path, value.mTime)]);
       });
     });
     this.electronAPI.scanCompleted(() => {
