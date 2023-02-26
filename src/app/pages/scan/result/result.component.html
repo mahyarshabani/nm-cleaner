@@ -9,11 +9,13 @@
           <div class="path">
             {{ folder.path }}
           </div>
+          <div class="size">
+            <div *ngIf="folder.sizeCalculating">...</div>
+            <div *ngIf="!folder.sizeCalculating">{{ folder.size }} MB</div>
+          </div>
           <div class="m-time">
             {{ folder.mTime }}
           </div>
-          <div class="m-time" *ngIf="folder.sizeCalculating">LOADING</div>
-          <div class="m-time" *ngIf="!folder.sizeCalculating">{{folder.size}}</div>
           <div
             class="status"
             (click)="delete(folder)"

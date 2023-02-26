@@ -32,6 +32,8 @@ ul.result {
     border-bottom: 1px solid var(--color-green-50);
     padding-bottom: 0.5rem;
     padding-top: 0.5rem;
+    align-items: center;
+
     &:last-child {
       border-bottom: none;
     }
@@ -53,6 +55,19 @@ ul.result {
       align-items: center;
       flex-grow: 1;
       word-break: break-all;
+    }
+
+    .m-time {
+      white-space: nowrap;
+      height: 100%;
+      margin: 0 .25rem;
+    }
+
+    .size {
+      white-space: nowrap;
+      height: 100%;
+      margin: 0 .25rem;
+      color: var(--color-yellow);
     }
   }
 }
@@ -90,7 +105,7 @@ footer {
   margin-top: 0.5rem;
 }
 
-.no-result{
+.no-result {
   display: flex;
   height: 100%;
   width: 100%;

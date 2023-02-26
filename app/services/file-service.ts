@@ -30,7 +30,6 @@ export class FileService {
 
   private async startCalculateFolderSize(folderPath: string) {
     this.folderSizeStartedS$.next(folderPath);
-    console.log({ getFolderSize });
     getFolderSize(folderPath, (err: unknown, size: number) => {
       if (err) {
         throw err;

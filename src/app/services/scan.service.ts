@@ -4,6 +4,7 @@ import { BehaviorSubject, map } from 'rxjs';
 import { ScanResult } from '@model';
 import { ELECTRON_API_TOKEN } from '../constant/electron-api-token';
 import { IElectronAPI } from '../type.d/renderer';
+import { SizeUtil } from '@util';
 
 @Injectable({
   providedIn: 'root',
@@ -58,7 +59,7 @@ export class ScanService {
       this.ngZone.run(() => {
         const scanResult = this.scanResult;
         const index = scanResult.findIndex((item) => item.path === value.path);
-        scanResult[index].size = value.size;
+        scanResult[index].size = SizeUtil.bytesToMegaBytes(value.size);
         scanResult[index].sizeCalculating = false;
         this.scanResultBS$.next([...scanResult]);
       });
