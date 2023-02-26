@@ -35,12 +35,32 @@ export class ScanService {
   ) {
     this.electronAPI.returnScanResult((_, value) => {
       this.ngZone.run(() => {
-        this.scanResultBS$.next([...this.scanResult, new ScanResult(value.path, value.mTime)]);
+        this.scanResultBS$.next([
+          ...this.scanResult,
+          new ScanResult(value.path, value.mTime),
+        ]);
       });
     });
     this.electronAPI.scanCompleted(() => {
       this.ngZone.run(() => {
         this.scanLoadingBS$.next(false);
+      });
+    });
+    this.electronAPI.sizeStarted((_, value) => {
+      this.ngZone.run(() => {
+        const scanResult = this.scanResult;
+        const index = scanResult.findIndex((item) => item.path === value);
+        scanResult[index].sizeCalculating = true;
+        this.scanResultBS$.next([...scanResult]);
+      });
+    });
+    this.electronAPI.returnSizeResult((_, value) => {
+      this.ngZone.run(() => {
+        const scanResult = this.scanResult;
+        const index = scanResult.findIndex((item) => item.path === value.path);
+        scanResult[index].size = value.size;
+        scanResult[index].sizeCalculating = false;
+        this.scanResultBS$.next([...scanResult]);
       });
     });
   }

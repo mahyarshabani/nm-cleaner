@@ -1,3 +1,3 @@
-export * from './delete-message.interface';
 export * from './message-payload.interface';
-export * from './scan-message.interface';
+export * from './scan-result.interface';
+export * from './size-result.interface';

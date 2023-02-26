@@ -5,14 +5,17 @@ import {
   IpcMainInvokeEvent,
   utilityProcess,
 } from 'electron';
-import { DeleteMessageEnum, ScanMessageEnum } from './enum';
+import { DeleteMessageEnum, ScanMessageEnum, SizeMessageEnum } from './enum';
 import * as path from 'path';
-import { IDeleteMessage, IMessage, IScanMessage } from './interface';
+import { IMessage } from './interface';
+import { DeleteMessageType, ScanMessageType } from './type';
 
 type MessageListenerType =
   | ScanMessageEnum.RETURN_RESULT
   | ScanMessageEnum.SCAN_COMPLETED
-  | DeleteMessageEnum.DELETE_DONE;
+  | DeleteMessageEnum.DELETE_DONE
+  | SizeMessageEnum.SIZE_CALCULATION_RESULT
+  | SizeMessageEnum.START_SIZE_CALCULATION;
 
 export class Controller {
   private fsUtility: Electron.UtilityProcess;
@@ -40,6 +43,12 @@ export class Controller {
       if (process.type === DeleteMessageEnum.DELETE_DONE) {
         this.window.webContents.send('fs:deleteDone', process.payload);
       }
+      if (process.type === SizeMessageEnum.SIZE_CALCULATION_RESULT) {
+        this.window.webContents.send('fs:sizeResult', process.payload);
+      }
+      if (process.type === SizeMessageEnum.START_SIZE_CALCULATION) {
+        this.window.webContents.send('fs:sizeStarted', process.payload);
+      }
     };
     this.fsUtility.on('message', this.messageListener);
   }
@@ -56,7 +65,7 @@ export class Controller {
   }
 
   private async handleScan(event: IpcMainInvokeEvent, targetFolder: string) {
-    const startScanMessage: IScanMessage<string> = {
+    const startScanMessage: ScanMessageType<string> = {
       type: ScanMessageEnum.START_SCAN,
       payload: targetFolder,
     };
@@ -64,7 +73,7 @@ export class Controller {
   }
 
   private async handleDelete(event: IpcMainInvokeEvent, targetFolder: string) {
-    const deleteMessage: IDeleteMessage<string> = {
+    const deleteMessage: DeleteMessageType<string> = {
       type: DeleteMessageEnum.DELETE,
       payload: targetFolder,
     };

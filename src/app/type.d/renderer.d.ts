@@ -20,6 +20,18 @@ export interface IElectronAPI {
   closeWindow: () => void;
   minimizeWindow: () => void;
   maximizeWindow: () => void;
+  returnSizeResult: (
+    callback: (
+      event: IpcRendererEvent,
+      value: { path: string; size: number }
+    ) => void
+  ) => Electron.IpcRenderer;
+  sizeStarted: (
+    callback: (
+      event: IpcRendererEvent,
+      value: string
+    ) => void
+  ) => Electron.IpcRenderer;
 }
 
 declare global {

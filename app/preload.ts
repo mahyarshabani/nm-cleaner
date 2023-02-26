@@ -11,5 +11,7 @@ const electronAPI: IElectronAPI = {
   closeWindow: () => ipcRenderer.invoke('window:close'),
   maximizeWindow: () => ipcRenderer.invoke('window:maximize'),
   minimizeWindow: () => ipcRenderer.invoke('window:minimize'),
+  returnSizeResult: (callback) => ipcRenderer.on('fs:sizeResult', callback),
+  sizeStarted: (callback) => ipcRenderer.on('fs:sizeStarted', callback),
 };
 contextBridge.exposeInMainWorld('electronAPI', electronAPI);
