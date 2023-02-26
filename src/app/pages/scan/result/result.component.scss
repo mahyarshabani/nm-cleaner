@@ -2,19 +2,39 @@
 
 :host {
   height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.items-wrapper {
+  flex-grow: 1;
+  min-height: 0;
+  overflow-y: hidden;
+  padding: 0.25rem;
+  border: solid 3px var(--color-green-50);
+  border-radius: 3px;
+}
+
+.inner-items-wrapper {
+  height: 100%;
   overflow: auto;
-  padding: 0 1rem;
-  @include vertical-scrollbar;
+  @include vertical-scrollbar(var(--color-green-50));
+  padding: 0 0.5rem;
 }
 
 ul.result {
   all: unset;
-  overflow: auto;
 
   li {
     all: unset;
     display: flex;
-    margin-top: 1rem;
+
+    border-bottom: 1px solid var(--color-green-50);
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    &:last-child {
+      border-bottom: none;
+    }
 
     .status {
       display: flex;
@@ -63,4 +83,19 @@ span[class^="material"] {
   @include createTransition(all);
   color: var(--color-green);
   border-color: var(--color-green);
+}
+
+footer {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.no-result{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  color: var(--color-green);
 }

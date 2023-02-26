@@ -2,13 +2,13 @@
   transition: $property var(--transition-duration) var(--transition-effect);
 }
 
-@mixin vertical-scrollbar {
+@mixin vertical-scrollbar($color: var(--color-green)) {
   overflow-y: auto;
-  scrollbar-color: var(--color-green) transparent;
+  scrollbar-color: $color transparent;
   scrollbar-width: thin;
 
   ::-webkit-scrollbar-corner {
-    background: var(--color-green);
+    background: $color;
   }
   &::-webkit-scrollbar {
     width: 7px;
@@ -21,6 +21,6 @@
 
   &::-webkit-scrollbar-thumb {
     border-radius: 7px;
-    background-color: var(--color-green);
+    background-color: $color;
   }
 }

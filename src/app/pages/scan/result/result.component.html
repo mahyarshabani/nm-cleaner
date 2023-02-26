@@ -1,25 +1,39 @@
-<ul class="result">
-  <li *ngFor="let folder of scanResult$ | async">
-    <div class="path">
-      {{ folder.path }}
-    </div>
-    <div
-      class="status"
-      (click)="delete(folder)"
-      [ngClass]="
-        folder.deleting ? 'pending' : folder.deleted ? 'done' : 'delete'
-      "
-    >
-      <span class="material-icons-outlined" *ngIf="folder.deleting">
-        pending
-      </span>
-      <span class="material-icons-outlined" *ngIf="folder.deleted"> done </span>
-      <span class="material-icons" *ngIf="!folder.deleting && !folder.deleted">
-        delete_outline
-      </span>
-    </div>
-  </li>
-</ul>
-<div>
-  <button class="btn-default" (click)="changeFolder.emit()">Change</button>
+<div class="items-wrapper">
+  <div class="inner-items-wrapper">
+    <ul class="result" *ngIf="scanResult$ | async as scanResult">
+      <div class="no-result" *ngIf="scanResult.length <= 0; else resultFound">
+        No result found!
+      </div>
+      <ng-template #resultFound>
+        <li *ngFor="let folder of scanResult">
+          <div class="path">
+            {{ folder.path }}
+          </div>
+          <div
+            class="status"
+            (click)="delete(folder)"
+            [ngClass]="
+              folder.deleting ? 'pending' : folder.deleted ? 'done' : 'delete'
+            "
+          >
+            <span class="material-icons-outlined" *ngIf="folder.deleting">
+              pending
+            </span>
+            <span class="material-icons-outlined" *ngIf="folder.deleted">
+              done
+            </span>
+            <span
+              class="material-icons"
+              *ngIf="!folder.deleting && !folder.deleted"
+            >
+              delete_outline
+            </span>
+          </div>
+        </li>
+      </ng-template>
+    </ul>
+  </div>
 </div>
+<footer>
+  <button class="btn-default" (click)="changeFolder.emit()">Change</button>
+</footer>

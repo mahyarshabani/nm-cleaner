@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { combineLatest, map, merge, Observable, withLatestFrom } from 'rxjs';
 import { ScanResult } from '@model';
 import { DeleteService, ScanService } from '@service';
