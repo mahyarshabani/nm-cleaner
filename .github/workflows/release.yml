@@ -13,6 +13,8 @@ jobs:
         with:
           node-version: 14
           cache: 'npm'
+      - name: Install Dependencies
+        run: npm ci
       - name: Build
         run: npm run electron:build
       - name: Test
