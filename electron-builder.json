@@ -12,7 +12,9 @@
     "!package-lock.json",
     {
       "from": "../dist",
-      "filter": ["**/*"]
+      "filter": [
+        "**/*"
+      ]
     }
   ],
   "win": {
@@ -22,7 +24,8 @@
     ]
   },
   "portable": {
-    "splashImage": "dist/assets/icons/electron.bmp"
+    "splashImage": "dist/assets/icons/electron.bmp",
+    "artifactName": "${productName}-portable-${version}.${ext}"
   },
   "mac": {
     "icon": "dist/assets/icons",
@@ -35,5 +38,6 @@
     "target": [
       "AppImage"
     ]
-  }
+  },
+  "afterAllArtifactBuild": "./scripts/afterAllArtifactBuild.js"
 }
