@@ -34,6 +34,8 @@
     "@angular/platform-browser": "^14.1.0",
     "@angular/platform-browser-dynamic": "^14.1.0",
     "@angular/router": "^14.1.0",
+    "fs-extra": "^11.1.0",
+    "get-folder-size": "^2.0.1",
     "material-icons": "^1.13.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
