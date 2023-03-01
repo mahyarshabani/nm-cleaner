@@ -1,0 +1,111 @@
+:root {
+  --color-yellow: #e8f79a;
+  --color-green: #49d292;
+  --color-green-50: #49d29250;
+  --color-blue: #3b445b;
+  --color-black: #383746;
+  --color-red: rgba(232, 17, 35);
+  --transition-duration: 300ms;
+  --base-font-size: 16px;
+}
+
+html {
+  background-color: var(--color-black);
+  font-family: "Montserrat", serif;
+  color: white;
+  height: 100%;
+  width: 100%;
+  font-size: calc(15px + 0.390625vw);
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.logo {
+  font-size: 48px;
+  text-align: center;
+  margin: 0;
+}
+
+.logo > .nm {
+  color: var(--color-green);
+}
+
+.logo > .c {
+  color: var(--color-yellow);
+}
+
+.description {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: normal;
+  margin: 1rem 0;
+  margin-bottom: 1.5rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.button {
+  all: unset;
+  border-radius: 3px;
+  padding: 0.75rem 1.5rem;
+  transition: var(--transition-duration);
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: bold;
+  width: 4rem;
+  text-align: center;
+}
+
+.button:hover {
+  transition: var(--transition-duration);
+}
+
+.download {
+  color: var(--color-green);
+  border: solid 3px var(--color-green);
+}
+
+.github {
+  color: var(--color-green);
+  border: solid 3px var(--color-green);
+}
+
+.download:hover {
+  background-color: var(--color-green);
+  color: var(--color-black);
+}
+
+.github:hover {
+  background-color: var(--color-green);
+  color: var(--color-black);
+}
+
+@media screen and (min-width: 600px) {
+  .logo {
+    font-size: 80px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .logo {
+    font-size: 114px;
+  }
+}
