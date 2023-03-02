@@ -24,8 +24,8 @@
     ]
   },
   "portable": {
-    "splashImage": "dist/assets/icons/electron.bmp",
-    "artifactName": "${productName}-portable-${version}.${ext}"
+    "splashImage": "dist/assets/icons/splash.bmp",
+    "artifactName": "${productName}-portable-${version}.windows.${ext}"
   },
   "mac": {
     "icon": "dist/assets/icons",
