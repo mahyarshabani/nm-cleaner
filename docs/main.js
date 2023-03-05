@@ -7,7 +7,7 @@ fetch(apiUrl)
         const tag = data.tag_name;
         const productName = 'nm-cleaner';
         const version = tag.substring(1);
-        const windowsFileName = `${productName}-${version}.portable.windows.exe`;
+        const windowsFileName = `${productName}-${version}.portable.windows.exe.zip`;
         const linuxFileName = `${productName}-${version}.linux.AppImage`;
         const windowsDownloadUrl = `https://github.com/${repoName}/releases/download/${tag}/${windowsFileName}`;
         const linuxDownloadUrl = `https://github.com/${repoName}/releases/download/${tag}/${linuxFileName}`;
