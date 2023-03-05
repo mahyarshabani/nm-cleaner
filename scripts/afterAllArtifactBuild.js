@@ -4,6 +4,10 @@ const zlib = require("zlib");
 const path = require("path");
 
 exports.default = async function (context) {
+  const windows = process.platform === 'win32';
+  if (!windows) {
+    return;
+  }
   const exeFilePath = path.join(
     __dirname,
     `../release/${packageJson.name}-portable-${packageJson.version}.exe`
