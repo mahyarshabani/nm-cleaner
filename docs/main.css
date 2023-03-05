@@ -40,12 +40,17 @@ body {
   margin: 0;
 }
 
-.logo > .nm {
+.logo>.nm {
   color: var(--color-green);
 }
 
-.logo > .c {
+.logo>.c {
   color: var(--color-yellow);
+}
+
+.logo>.version {
+  font-size: 0.75rem;
+  margin-left: -1rem;
 }
 
 .description {
@@ -59,18 +64,21 @@ body {
 .buttons {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: .5rem;
 }
 
 .button {
   all: unset;
+  display: block;
   border-radius: 3px;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem .5rem;
   transition: var(--transition-duration);
   cursor: pointer;
   font-size: 0.75rem;
   font-weight: bold;
-  width: 4rem;
+  width: 9rem;
   text-align: center;
 }
 
